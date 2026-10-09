@@ -601,6 +601,13 @@ router.delete('/medical-documents/:id', authenticateJWT, medicalDocumentControll
 
 router.use('/chatbot', require('./chatbotRoutes'));
 
+
+// 15. ABDM (Ayushman Bharat Digital Mission) & HL7 FHIR Endpoints
+const abdmController = require('../controllers/abdmController');
+router.get('/abdm/fhir/document/:id', abdmController.exportDocumentFhir);
+router.post('/abdm/link-abha', authenticateJWT, abdmController.linkAbha);
+router.post('/abdm/import-records', authenticateJWT, abdmController.importAbdmRecords);
+
 module.exports = router;
 
 

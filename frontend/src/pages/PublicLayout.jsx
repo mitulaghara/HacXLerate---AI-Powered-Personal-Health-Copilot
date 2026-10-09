@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Phone, Lock, Menu, X } from 'lucide-react';
 import LanguageSelector from '../components/LanguageSelector';
 
@@ -43,11 +43,10 @@ export default function PublicLayout({
             </div>
 
             {/* NAVIGATION */}
-            <nav className="desktop-nav" style={{ flex: 1, display: 'flex', justifyContent: 'center', gap: '2.5rem', alignItems: 'center' }} aria-label="Primary">
-              <div className="brand-text-hide dropdown-container" style={{ position: 'relative', cursor: 'pointer' }}>
+            <nav className="desktop-nav" style={{ flex: 1, display: 'flex', justifyContent: 'center', gap: '1.5rem', alignItems: 'center' }} aria-label="Primary">
+              <div className="brand-text-hide" style={{ position: 'relative' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--mutedForeground)', letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>
                   <span>RURAL HEALTH</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: '1px' }}><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </div>
               </div>
               {[
@@ -56,17 +55,30 @@ export default function PublicLayout({
                 { label: 'Network', path: '/network' },
                 { label: 'Health Articles', path: '/articles' },
                 { label: 'Contact', path: '/contact' },
-              ].map(link => (
-                <Link 
-                  key={link.label} 
-                  to={link.path} 
-                  style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', fontWeight: 500, color: 'var(--mutedForeground)', textDecoration: 'none', transition: 'color 0.2s' }}
-                  onMouseEnter={e => e.currentTarget.style.color = 'var(--foreground)'}
-                  onMouseLeave={e => e.currentTarget.style.color = 'var(--mutedForeground)'}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              ].map(link => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <Link 
+                    key={link.label} 
+                    to={link.path} 
+                    style={{ 
+                      fontFamily: 'var(--font-body)', 
+                      fontSize: '0.9375rem', 
+                      fontWeight: 500, 
+                      color: isActive ? 'var(--primary)' : 'var(--mutedForeground)', 
+                      textDecoration: 'none', 
+                      transition: 'all 0.2s', 
+                      whiteSpace: 'nowrap',
+                      borderBottom: isActive ? '2px solid var(--primary)' : '2px solid transparent',
+                      paddingBottom: '0.25rem'
+                    }}
+                    onMouseEnter={e => { if(!isActive) e.currentTarget.style.color = 'var(--foreground)'}}
+                    onMouseLeave={e => { if(!isActive) e.currentTarget.style.color = 'var(--mutedForeground)'}}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* ACTIONS */}

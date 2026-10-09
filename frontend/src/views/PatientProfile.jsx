@@ -6,6 +6,7 @@ import { api, API_BASE } from '../utils/api';
 import { getLivePosition, reverseGeocode } from '../utils/geolocation';
 import HeartbeatLoader from '../components/HeartbeatLoader';
 import MedicalDocumentIntelligence from '../components/MedicalDocumentIntelligence';
+import UnifiedHealthTimeline from '../components/UnifiedHealthTimeline';
 function computeAge(dob) {
   if (!dob) return null;
   const birth = new Date(dob);
@@ -2320,6 +2321,14 @@ export default function PatientProfile({
       <MedicalDocumentIntelligence 
         onRecordSynchronized={loadProfile} 
         patientId={patientData?.id} 
+      />
+
+      {/* ═══════════════════════ UNIFIED HEALTH TIMELINE ═══════════════════════ */}
+      <UnifiedHealthTimeline 
+        patientId={patientData?.id}
+        prescriptions={prescriptions}
+        referrals={referrals}
+        medicalHistory={medicalHistory}
       />
 
       {/* Medical History */}

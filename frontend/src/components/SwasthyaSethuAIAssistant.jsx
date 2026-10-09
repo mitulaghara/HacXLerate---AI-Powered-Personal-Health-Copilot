@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Mic, MicOff, Send, X, MessageSquare, Volume2, VolumeX, RefreshCcw, Loader2, Copy, Keyboard } from 'lucide-react';
+import { Mic, MicOff, Send, X, MessageSquare, Volume2, VolumeX, RefreshCcw, Loader2, Copy, Keyboard, MapPin, Navigation } from 'lucide-react';
 import styled from 'styled-components';
 import { VoiceNote } from './VoiceNote';
 import { speakAssistantMessage, stopSpeech } from '../utils/speechHelper';
+import { Conversation, ConversationBubble, ConversationContent, ConversationReactions } from './Conversation';
+import { StructuredHealthMessage } from './StructuredHealthMessage';
 
 const ChatContainer = styled.div`
   position: fixed;
@@ -36,9 +38,9 @@ const ChatButton = styled.button`
 `;
 
 const ChatWindow = styled.div`
-  width: 380px;
-  height: 600px;
-  max-height: 80vh;
+  width: clamp(360px, 94vw, 450px);
+  height: 640px;
+  max-height: 85vh;
   background: white;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
@@ -48,11 +50,12 @@ const ChatWindow = styled.div`
   margin-bottom: 16px;
   transform-origin: bottom right;
   transition: all 0.3s ease;
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.08);
 
   @media (max-width: 480px) {
-    width: calc(100vw - 32px);
-    height: 70vh;
+    width: calc(100vw - 20px);
+    height: 75vh;
+    border-radius: 16px;
   }
 `;
 
@@ -246,7 +249,7 @@ const SwasthyaSethuAIAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([{
     role: 'model',
-    text: t('chatbot.welcome', 'Hello! I am your Swasthya Sethu AI Health Assistant. Please ask me any health, symptom, medication, or wellness questions.')
+    text: t('chatbot.welcome', 'Hello! I am your Sanjeevani AI Health Assistant. Please ask me any health, symptom, medication, or wellness questions.')
   }]);
   const [input, setInput] = useState('');
   const [language, setLanguage] = useState(currentLangStr);
@@ -255,6 +258,25 @@ const SwasthyaSethuAIAssistant = () => {
   const [speakingIndex, setSpeakingIndex] = useState(null);
   const [showVoiceNote, setShowVoiceNote] = useState(false);
   
+  const reverseLanguageMap = {
+    'English': 'en',
+    'Hindi': 'hi',
+    'Gujarati': 'gu',
+    'Marathi': 'mr',
+    'Tamil': 'ta',
+    'Telugu': 'te',
+    'Bengali': 'bn'
+  };
+
+  const handleLanguageChange = (e) => {
+    const selected = e.target.value;
+    setLanguage(selected);
+    const code = reverseLanguageMap[selected];
+    if (code && i18n.language !== code) {
+        i18n.changeLanguage(code);
+    }
+  };
+
   // Sync internal state with i18n
   useEffect(() => {
     setLanguage(languageMap[i18n.language?.substring(0,2)] || 'English');
@@ -271,11 +293,44 @@ const SwasthyaSethuAIAssistant = () => {
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
 
+  const [userLocation, setUserLocation] = useState(null);
+  const [locationCity, setLocationCity] = useState('');
+  const [isLocating, setIsLocating] = useState(false);
+
+  const requestLiveLocation = () => {
+    if (!navigator.geolocation) return;
+    setIsLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const coords = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        setUserLocation(coords);
+        setIsLocating(false);
+        fetch(`https://photon.komoot.io/reverse?lat=${coords.lat}&lon=${coords.lng}`)
+          .then(r => r.json())
+          .then(d => {
+            const p = d?.features?.[0]?.properties;
+            const city = p?.city || p?.district || p?.county || p?.state;
+            if (city) setLocationCity(city);
+          })
+          .catch(() => {});
+      },
+      (err) => {
+        console.warn('Geolocation error:', err.message);
+        setIsLocating(false);
+      },
+      { enableHighAccuracy: true, timeout: 8000 }
+    );
+  };
+
+  useEffect(() => {
+    requestLiveLocation();
+  }, []);
+
   const suggestions = [
-    "What are common symptoms of viral fever?",
-    "First aid guidance for sudden chest pain",
-    "Diet tips for blood pressure & diabetes",
-    "Rural health clinics & 108 ambulance"
+    "I have heart problem, give me nearby hospital",
+    "What medicine should I take for fever and headache?",
+    "Find nearest hospital with available ICU beds",
+    "First aid guidance for sudden chest pain"
   ];
 
   const scrollToBottom = () => {
@@ -311,7 +366,12 @@ const SwasthyaSethuAIAssistant = () => {
       const res = await fetch('/api/chatbot/message', {
         method: 'POST',
         headers,
-        body: JSON.stringify({ message: text, history, language })
+        body: JSON.stringify({ 
+          message: text, 
+          history, 
+          language,
+          location: userLocation 
+        })
       });
       
       const data = await res.json();
@@ -369,6 +429,9 @@ const SwasthyaSethuAIAssistant = () => {
     const formData = new FormData();
     formData.append('audio', audioBlob, 'voice.webm');
     formData.append('language', language);
+    if (userLocation) {
+      formData.append('location', JSON.stringify(userLocation));
+    }
 
     const headers = {};
     const token = getToken();
@@ -413,7 +476,7 @@ const SwasthyaSethuAIAssistant = () => {
   const clearChat = () => {
     setMessages([{
       role: 'model',
-      text: 'Hello! I am your Swasthya Sethu AI Health Assistant. Please ask me any health, symptom, medication, or wellness questions.'
+      text: 'Hello! I am your Sanjeevani AI Health Assistant. Please ask me any health, symptom, medication, or wellness questions.'
     }]);
     stopSpeech();
     setSpeakingIndex(null);
@@ -430,7 +493,7 @@ const SwasthyaSethuAIAssistant = () => {
           <ChatHeader>
             <HeaderTitle>
               <img src="/chatbot-avatar.png" alt="AI" style={{ width: '26px', height: '26px', imageRendering: 'pixelated' }} />
-              Swasthya Sethu AI
+              Sanjeevani AI
             </HeaderTitle>
             <HeaderActions>
               <IconButton onClick={clearChat} title="Clear Chat">
@@ -442,32 +505,92 @@ const SwasthyaSethuAIAssistant = () => {
             </HeaderActions>
           </ChatHeader>
 
-          <MessageList>
+          {/* Location Bar */}
+          <div style={{
+            background: userLocation ? '#f0fdf4' : '#f8fafc',
+            padding: '7px 14px',
+            borderBottom: '1px solid #e2e8f0',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            fontSize: '0.74rem',
+            color: userLocation ? '#166534' : '#475569'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', minWidth: 0 }}>
+              <MapPin size={13} className={userLocation ? 'text-emerald-600 shrink-0' : 'text-slate-400 shrink-0'} />
+              <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 600 }}>
+                {userLocation 
+                  ? `📍 Live GPS: ${locationCity || `${userLocation.lat.toFixed(2)}, ${userLocation.lng.toFixed(2)}`} (Active)`
+                  : '📍 Location: Registered Health Facilities'}
+              </span>
+            </div>
+            {!userLocation ? (
+              <button
+                onClick={requestLiveLocation}
+                style={{
+                  background: '#ecfdf5',
+                  color: '#059669',
+                  border: '1px solid #a7f3d0',
+                  borderRadius: '6px',
+                  padding: '2px 8px',
+                  fontSize: '0.72rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {isLocating ? 'Locating...' : 'Enable GPS'}
+              </button>
+            ) : (
+              <button
+                onClick={requestLiveLocation}
+                title="Refresh GPS"
+                style={{
+                  background: 'transparent',
+                  color: '#16a34a',
+                  border: 'none',
+                  fontSize: '0.7rem',
+                  fontWeight: 700,
+                  cursor: 'pointer'
+                }}
+              >
+                Refresh
+              </button>
+            )}
+          </div>
+
+          <Conversation className="flex-1 overflow-y-auto p-3.5 gap-3 bg-slate-50/80" style={{ maxHeight: '440px' }}>
             {messages.map((msg, idx) => (
-              <div key={idx} style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-                <MessageBubble $isUser={msg.role === 'user'}>
-                  {msg.text}
-                </MessageBubble>
+              <ConversationBubble
+                key={idx}
+                align={msg.role === 'user' ? 'end' : 'start'}
+                variant={msg.role === 'user' ? 'default' : 'muted'}
+                sentAt={msg.role === 'user' ? 'You' : 'Swasthya Copilot'}
+                className={msg.role === 'model' ? '!max-w-full w-full' : ''}
+              >
+                <ConversationContent className={msg.role === 'model' ? 'w-full !max-w-full !p-0 !bg-transparent !border-0 shadow-none' : ''}>
+                  <StructuredHealthMessage text={msg.text} isUser={msg.role === 'user'} />
+                </ConversationContent>
                 {msg.role === 'model' && (
-                  <MessageActions>
-                    <IconButton $dark onClick={() => copyToClipboard(msg.text)} title="Copy text">
-                      <Copy size={14} />
+                  <div style={{ display: 'flex', gap: '6px', marginTop: '4px', paddingLeft: '4px' }}>
+                    <IconButton $dark onClick={() => copyToClipboard(msg.text)} title="Copy text" data-slot="button">
+                      <Copy size={13} />
                     </IconButton>
-                    <IconButton $dark onClick={() => speakText(msg.text, idx)} title={speakingIndex === idx ? "Stop speaking" : "Read aloud"}>
-                      {speakingIndex === idx ? <VolumeX size={14} /> : <Volume2 size={14} />}
+                    <IconButton $dark onClick={() => speakText(msg.text, idx)} title={speakingIndex === idx ? "Stop speaking" : "Read aloud"} data-slot="button">
+                      {speakingIndex === idx ? <VolumeX size={13} /> : <Volume2 size={13} />}
                     </IconButton>
-                  </MessageActions>
+                  </div>
                 )}
-              </div>
+              </ConversationBubble>
             ))}
             {isLoading && (
-              <div style={{ display: 'flex', gap: '8px', alignItems: 'center', color: '#64748b' }}>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center', color: '#64748b', padding: '8px 12px' }}>
                 <Loader2 size={16} className="lucide-spin" />
                 <span style={{ fontSize: '0.85rem' }}>AI is thinking...</span>
               </div>
             )}
             <div ref={messagesEndRef} />
-          </MessageList>
+          </Conversation>
 
           <ChatInputArea>
             {messages.length === 1 && !showVoiceNote && (
@@ -480,7 +603,7 @@ const SwasthyaSethuAIAssistant = () => {
             
             {!showVoiceNote && (
               <ControlsRow>
-                <Select value={language} onChange={e => setLanguage(e.target.value)}>
+                <Select value={language} onChange={handleLanguageChange}>
                   <option value="English">English</option>
                   <option value="Hindi">Hindi (हिंदी)</option>
                   <option value="Gujarati">Gujarati (ગુજરાતી)</option>
@@ -515,7 +638,7 @@ const SwasthyaSethuAIAssistant = () => {
                   disabled={isLoading}
                 />
                 {input.trim() ? (
-                  <ActionButton onClick={() => sendMessage(input)} disabled={isLoading}>
+                  <ActionButton onClick={() => sendMessage(input)} disabled={isLoading} data-slot="send-button" data-sound="send">
                     <Send size={18} />
                   </ActionButton>
                 ) : (

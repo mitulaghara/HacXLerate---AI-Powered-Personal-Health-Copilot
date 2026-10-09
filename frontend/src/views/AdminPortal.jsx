@@ -565,46 +565,52 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
     margin: '0 auto',
     padding: 'clamp(14px, 3vw, 24px) clamp(10px, 3vw, 20px)'
   }}>
-      {/* Page Title & Actions */}
+      {/* ═══════════ REDESIGNED HEALTHCARE ADMIN HEADER ═══════════ */}
       <div style={{
-      marginBottom: '20px',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'flex-start',
-      flexWrap: 'wrap',
-      gap: '12px'
-    }}>
-        <div style={{ flex: '1 1 300px', minWidth: 0 }}>
-          <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '8px'
-        }}>
-            <span className="badge badge-green">Super Administrator Command</span>
+        background: 'linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%)',
+        borderRadius: '16px',
+        border: '1px solid #e2e8f0',
+        padding: '24px 28px',
+        marginBottom: '20px',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.02)',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '16px'
+      }}>
+        <div style={{ flex: '1 1 340px', minWidth: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
             <span style={{
-            fontSize: '0.78rem',
-            fontWeight: 600,
-            color: '#475569'
-          }}>
-              Live MongoDB Atlas Database Master Control
+              background: '#e6f4f2',
+              color: '#0b6b68',
+              border: '1px solid #b2d8d6',
+              fontSize: '0.72rem',
+              fontWeight: 800,
+              padding: '3px 10px',
+              borderRadius: '20px',
+              textTransform: 'uppercase',
+              letterSpacing: '0.04em'
+            }}>
+              Super Administrator Command
+            </span>
+            <span style={{ fontSize: '0.78rem', fontWeight: 600, color: '#10b981', display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }}></span>
+              MongoDB Atlas Live
             </span>
           </div>
           <h1 style={{
-          fontSize: 'clamp(1.25rem, 3.5vw, 1.85rem)',
-          fontWeight: 800,
-          marginTop: '6px',
-          lineHeight: 1.25,
-          wordBreak: 'break-word'
-        }}>
-            National Health Administration Master Portal
+            margin: '0 0 4px 0',
+            fontFamily: 'var(--font-heading)',
+            fontSize: 'clamp(1.35rem, 3vw, 1.85rem)',
+            fontWeight: 800,
+            color: '#0f172a',
+            letterSpacing: '-0.02em'
+          }}>
+            National Healthcare Command & Logistics
           </h1>
-          <p style={{
-          fontSize: '0.85rem',
-          color: '#64748b',
-          marginTop: '4px'
-        }}>
-            Complete CRUD management over Public Healthcare Facilities, Medicine Warehouses, and Epidemic Alerts.
+          <p style={{ margin: 0, fontSize: '0.86rem', color: '#64748b', lineHeight: 1.5 }}>
+            Centralized orchestration over health facilities, medical inventories, clinical workforce, and epidemic surveillance.
           </p>
         </div>
         <div className="admin-header-actions" style={{
@@ -618,7 +624,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
           fontSize: '0.82rem',
           backgroundColor: '#000',
           color: '#fff',
-          border: '1px solid #000',
+          border: '1px solid #cbd5e1', borderRadius: '8px',
           cursor: 'pointer'
         }}>
             <span>Logout Admin</span>
@@ -638,7 +644,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
       {notice && <div style={{
       marginBottom: '18px',
       padding: '12px 18px',
-      border: "1px solid #000",
+      border: '1px solid #cbd5e1', borderRadius: '8px',
       background: '#f0fdf4',
       display: 'flex',
       alignItems: 'center',
@@ -652,13 +658,16 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
           <span>{notice}</span>
         </div>}
 
-      {/* Responsive Sub-Navigation Tabs */}
-      <div className="admin-tab-scroll" style={{
+      {/* ═══════════ REDESIGNED RESPONSIVE NAVIGATION TABS ═══════════ */}
+      <div style={{
+        background: '#ffffff',
+        padding: '6px',
+        borderRadius: '14px',
+        border: '1px solid #e2e8f0',
+        marginBottom: '24px',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.02)',
         display: 'flex',
-        gap: '8px',
-        borderBottom: "2px solid #18312F",
-        paddingBottom: '12px',
-        marginBottom: '20px',
+        gap: '6px',
         overflowX: 'auto',
         WebkitOverflowScrolling: 'touch'
       }}>
@@ -676,39 +685,37 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
               }}
               style={{
                 padding: '9px 16px',
-                borderRadius: '8px',
+                borderRadius: '10px',
                 border: isDanger
-                  ? (isActive ? '2px solid #b91c1c' : '2px solid #f87171')
-                  : (isActive ? '2px solid #18312F' : '1px solid #cbd5e1'),
+                  ? (isActive ? '1px solid #dc2626' : '1px solid #fecdd3')
+                  : (isActive ? '1px solid #0b6b68' : '1px solid transparent'),
                 background: isDanger
-                  ? (isActive ? '#dc2626' : '#fef2f2')
-                  : (isActive ? '#18312F' : '#ffffff'),
+                  ? (isActive ? '#dc2626' : '#fff1f2')
+                  : (isActive ? '#0b6b68' : 'transparent'),
                 color: isDanger
                   ? (isActive ? '#ffffff' : '#b91c1c')
-                  : (isActive ? '#ffffff' : '#334155'),
-                fontWeight: 800,
-                fontSize: '0.85rem',
+                  : (isActive ? '#ffffff' : '#475569'),
+                fontWeight: 700,
+                fontSize: '0.84rem',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
                 whiteSpace: 'nowrap',
                 flexShrink: 0,
-                boxShadow: isDanger
-                  ? (isActive ? '0 4px 12px rgba(220, 38, 38, 0.35)' : '0 1px 3px rgba(239, 68, 68, 0.15)')
-                  : (isActive ? '0 2px 6px rgba(0,0,0,0.15)' : 'none'),
+                boxShadow: isActive ? '0 2px 8px rgba(0,0,0,0.1)' : 'none',
                 transition: 'all 0.15s ease'
               }}
             >
-              <Icon size={16} />
+              <Icon size={15} />
               <span>{t.label}</span>
               {t.count !== undefined && (
                 <span style={{
                   fontSize: '0.7rem',
-                  padding: '1px 7px',
+                  padding: '2px 8px',
                   borderRadius: '10px',
-                  background: isActive ? 'rgba(255, 255, 255, 0.25)' : '#e2e8f0',
-                  color: isActive ? '#ffffff' : '#1e293b',
+                  background: isActive ? 'rgba(255, 255, 255, 0.2)' : '#e2e8f0',
+                  color: isActive ? '#ffffff' : '#334155',
                   fontWeight: 800
                 }}>
                   {t.count}
@@ -1126,7 +1133,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
           {showAddFacility && <form onSubmit={handleCreateFacility} className="glass-panel" style={{
           padding: 'clamp(14px, 3vw, 22px)',
           marginBottom: '22px',
-          border: "2px solid #000"
+          border: '1px solid #e2e8f0', borderRadius: '16px', background: '#ffffff', boxShadow: '0 2px 10px rgba(0,0,0,0.02)'
         }}>
               <h4 style={{
             fontSize: '1.05rem',
@@ -1151,7 +1158,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
                   <input type="text" required placeholder="Enter healthcare facility name..." value={facName} onChange={e => setFacName(e.target.value)} style={{
                 width: '100%',
                 padding: '8px 12px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }} />
                 </div>
@@ -1165,7 +1172,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
                   <select value={facType} onChange={e => setFacType(e.target.value)} style={{
                 width: '100%',
                 padding: '8px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }}>
                     <option value="Sub-Centre">Sub-Centre (Level 0)</option>
@@ -1184,7 +1191,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
                   <input type="text" required value={facVillage} onChange={e => setFacVillage(e.target.value)} style={{
                 width: '100%',
                 padding: '8px 12px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }} />
                 </div>
@@ -1198,7 +1205,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
                   <input type="number" required value={facBeds} onChange={e => setFacBeds(e.target.value)} style={{
                 width: '100%',
                 padding: '8px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }} />
                 </div>
@@ -1212,7 +1219,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
                   <input type="number" value={facOxygen} onChange={e => setFacOxygen(e.target.value)} style={{
                 width: '100%',
                 padding: '8px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }} />
                 </div>
@@ -1226,7 +1233,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
                   <input type="text" placeholder="Enter doctor / in-charge name..." value={facDoctorName} onChange={e => setFacDoctorName(e.target.value)} style={{
                 width: '100%',
                 padding: '8px 12px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }} />
                 </div>
@@ -1246,7 +1253,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
           {editingFacility && <form onSubmit={handleUpdateFacility} className="glass-panel" style={{
           padding: 'clamp(14px, 3vw, 22px)',
           marginBottom: '22px',
-          border: "2px solid #000"
+          border: '1px solid #e2e8f0', borderRadius: '16px', background: '#ffffff', boxShadow: '0 2px 10px rgba(0,0,0,0.02)'
         }}>
               <div style={{
             display: 'flex',
@@ -1287,7 +1294,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
               })} style={{
                 width: '100%',
                 padding: '8px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }} />
                 </div>
@@ -1307,7 +1314,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
               })} style={{
                 width: '100%',
                 padding: '8px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }} />
                 </div>
@@ -1324,7 +1331,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
               })} style={{
                 width: '100%',
                 padding: '8px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }} />
                 </div>
@@ -1341,7 +1348,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
               })} style={{
                 width: '100%',
                 padding: '8px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }} />
                 </div>
@@ -1367,9 +1374,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
           gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
           gap: '16px'
         }}>
-            {facilities.map(fac => <div key={fac.id || fac._id} className="glass-card" style={{
-            padding: 'clamp(14px, 2.5vw, 20px)'
-          }}>
+            {facilities.map(fac => <div key={fac.id || fac._id} className="glass-card" style={{ padding: '20px', borderRadius: '16px', border: '1px solid #e2e8f0', background: '#ffffff', boxShadow: '0 2px 10px rgba(0,0,0,0.02)', transition: 'all 0.2s' }}>
                 <div style={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -1399,7 +1404,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
                 flexShrink: 0
               }}>
                     <button onClick={() => setEditingFacility(fac)} style={{
-                  border: "1px solid #000",
+                  border: '1px solid #cbd5e1', borderRadius: '8px',
                   padding: '6px 8px',
                   cursor: 'pointer',
                   background: '#fff'
@@ -1407,7 +1412,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
                       <Edit2 size={14} />
                     </button>
                     <button onClick={() => handleDeleteFacility(fac)} style={{
-                  border: "1px solid #000",
+                  border: '1px solid #cbd5e1', borderRadius: '8px',
                   padding: '6px 8px',
                   cursor: 'pointer',
                   background: '#fff'
@@ -1423,9 +1428,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
               gap: '6px',
               margin: '12px 0',
               textAlign: 'center',
-              background: '#f8fafc',
-              padding: '6px',
-              border: '1px solid #e2e8f0'
+              background: '#f8fafc', padding: '10px 8px', borderRadius: '10px', border: '1px solid #f1f5f9'
             }}>
                   <div style={{ padding: '4px', minWidth: 0 }}>
                     <div style={{
@@ -1515,7 +1518,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
           {showAddOutbreak && <form onSubmit={handleCreateOutbreak} className="glass-panel" style={{
           padding: 'clamp(14px, 3vw, 22px)',
           marginBottom: '22px',
-          border: "2px solid #000"
+          border: '1px solid #e2e8f0', borderRadius: '16px', background: '#ffffff', boxShadow: '0 2px 10px rgba(0,0,0,0.02)'
         }}>
               <h4 style={{
             fontSize: '1.05rem',
@@ -1540,7 +1543,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
                   <input type="text" required placeholder="Enter disease syndrome / condition..." value={obDisease} onChange={e => setObDisease(e.target.value)} style={{
                 width: '100%',
                 padding: '8px 12px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }} />
                 </div>
@@ -1554,7 +1557,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
                   <input type="text" required value={obVillage} onChange={e => setObVillage(e.target.value)} style={{
                 width: '100%',
                 padding: '8px 12px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }} />
                 </div>
@@ -1568,7 +1571,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
                   <input type="number" value={obCases} onChange={e => setObCases(e.target.value)} style={{
                 width: '100%',
                 padding: '8px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }} />
                 </div>
@@ -1582,7 +1585,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
                   <input type="text" value={obAction} onChange={e => setObAction(e.target.value)} style={{
                 width: '100%',
                 padding: '8px 12px',
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 fontSize: '0.85rem'
               }} />
                 </div>
@@ -1636,7 +1639,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
               padding: '10px',
               margin: '10px 0',
               fontSize: '0.78rem',
-              border: "1px solid #000",
+              border: '1px solid #cbd5e1', borderRadius: '8px',
               wordBreak: 'break-word'
             }}>
                   <strong>Protocol:</strong> {ob.recommendedAction}
@@ -1653,7 +1656,7 @@ Access: Select "Doctor ID & Pass" in Doctor Panel to log in.`;
                 fontWeight: 600
               }}>Status: {ob.status}</span>
                   <button onClick={() => handleDeleteOutbreak(ob)} style={{
-                border: "1px solid #000",
+                border: '1px solid #cbd5e1', borderRadius: '8px',
                 padding: '4px 10px',
                 cursor: 'pointer',
                 fontWeight: 700,

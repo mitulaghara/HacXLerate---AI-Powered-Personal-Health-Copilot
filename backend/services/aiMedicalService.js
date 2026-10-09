@@ -1,8 +1,8 @@
-const { GoogleGenAI } = require('@google/genai');
+const Groq = require('groq-sdk');
 
 /**
  * AI-Powered Structured Medical Information Extraction Service
- * Powered exclusively by Google Gemini API (GEMINI_API_KEY) with
+ * Powered exclusively by Groq Llama 3 / OSS Models with
  * built-in GraminArogya Clinical Intelligence synthesizer.
  */
 class AIMedicalService {
@@ -11,27 +11,28 @@ class AIMedicalService {
   }
 
   refreshClients() {
-    this.geminiKey = process.env.GEMINI_API_KEY || '';
-    this.geminiModel = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
-    this.geminiClient = null;
+    this.groqKey = process.env.GROQ_API_KEY || '';
+    // We default to the OSS 120b or llama model that works with JSON
+    this.groqModel = 'openai/gpt-oss-120b';
+    this.groqClient = null;
 
-    if (this.geminiKey) {
+    if (this.groqKey) {
       try {
-        this.geminiClient = new GoogleGenAI({ apiKey: this.geminiKey });
+        this.groqClient = new Groq({ apiKey: this.groqKey });
       } catch (err) {
-        console.warn('Gemini initialization note:', err.message);
+        console.warn('Groq initialization note:', err.message);
       }
     }
   }
 
   isConfigured() {
     this.refreshClients();
-    return Boolean(this.geminiClient);
+    return Boolean(this.groqClient);
   }
 
   getActiveProvider() {
     this.refreshClients();
-    if (this.geminiClient) return { provider: 'Google Gemini', model: this.geminiModel };
+    if (this.groqClient) return { provider: 'Groq', model: this.groqModel };
     return { provider: 'ClinicalIntelligence', model: 'GraminArogya Clinical Engine v1.0' };
   }
 
@@ -99,51 +100,46 @@ class AIMedicalService {
   }
 
   /**
-   * Extract structured medical data using Gemini, OpenAI, or Clinical Intelligence Engine
+   * Extract structured medical data using Groq AI
    */
   async extractStructuredMedicalData(ocrText, documentCategory = 'other', baselineData = null, ocrEngine = 'ocr', ocrConfidence = null) {
     this.refreshClients();
 
-    // 1. If Google Gemini is configured
-    if (this.geminiClient) {
+    if (this.groqClient) {
       try {
         const prompt = this.buildPrompt(ocrText, documentCategory);
-        const response = await this.geminiClient.models.generateContent({
-          model: this.geminiModel,
-          contents: prompt,
-          config: {
-            responseMimeType: 'application/json',
-            temperature: 0.1
-          }
+        const response = await this.groqClient.chat.completions.create({
+          model: this.groqModel,
+          messages: [{ role: 'user', content: prompt }],
+          temperature: 0.1,
+          response_format: { type: 'json_object' }
         });
 
-        const rawContent = response.text || '{}';
+        const rawContent = response.choices[0]?.message?.content || '{}';
         const parsed = JSON.parse(rawContent);
 
         return {
           status: 'COMPLETED',
-          modelUsed: `Google Gemini (${this.geminiModel})`,
+          modelUsed: `Groq (${this.groqModel})`,
           summary: parsed.summary || this.synthesizeClinicalSummary(parsed, ocrEngine, ocrConfidence),
           error: null,
           extractedData: parsed
         };
-      } catch (geminiErr) {
-        console.warn('Gemini extraction error, falling back:', geminiErr.message);
+      } catch (groqErr) {
+        console.warn('Groq extraction error, falling back:', groqErr.message);
       }
     }
 
-    // If Gemini is not configured and no baseline data was passed (e.g. standalone test)
-    if (!this.geminiClient && !baselineData) {
+    if (!this.groqClient && !baselineData) {
       return {
         status: 'UNAVAILABLE',
         modelUsed: null,
         summary: 'Cloud AI extraction unavailable. Genuine OCR text and deterministic baseline fields are provided.',
-        error: 'GEMINI_API_KEY not configured',
+        error: 'GROQ_API_KEY not configured',
         extractedData: null
       };
     }
 
-    // 3. Automated GraminArogya Clinical Intelligence Engine (Instant, Offline, Zero-Fail)
     const smartSummary = this.synthesizeClinicalSummary(baselineData, ocrEngine, ocrConfidence);
 
     return {
@@ -156,18 +152,18 @@ class AIMedicalService {
   }
 
   getSystemPrompt() {
-    return `You are a certified healthcare informatics assistant specialized in extracting structured clinical records from Indian medical documents, pathology reports, and prescriptions.
+    return `You are a highly empathetic AI Personal Health Copilot specialized in analyzing medical reports and explaining them to rural patients who do not understand medical jargon.
 
 STRICT SAFETY RULES:
 1. NEVER invent, fabricate, or extrapolate any values, units, medicines, or diagnoses that do not appear in the text.
 2. If a value or doctor name is missing, set it to "" or null.
-3. Preserve exact measured values and units as written (e.g. "13.2 g/dL", "154 mg/dL").
-4. Output valid JSON matching the schema.
+3. Preserve exact measured values and units as written (e.g. "13.2 g/dL").
+4. IMPORTANT: Your JSON output MUST STRICTLY follow the schema below.
 
 SCHEMA:
 {
-  "summary": "Provide a plain language, easy-to-understand summary of the health records. Crucially, explain what any abnormal lab values mean in a way that a normal patient can understand without causing panic. Keep the wording safe and medically correct. If handwritten or bilingual, extract the meaning clearly.",
-  "summaryHindi": "Provide the exact same plain language summary translated into Hindi (हिंदी).",
+  "summary": "Write a DETAILED, conversational, and highly empathetic explanation of this health report. Speak directly to the patient like a friendly, caring human doctor sitting across from them. Break it down: First, explain what the overall report says. Second, detail exactly what their numbers mean for their body in plain, everyday language (e.g., instead of 'High LDL', say 'Your bad cholesterol is a bit high, which means fats might be building up in your blood vessels'). Third, offer gentle, encouraging advice on what they should do next. Make it at least 3-4 sentences long. Do NOT sound like a robot; sound like a warm, supportive human.",
+  "summaryHindi": "Provide the EXACT same simple, compassionate summary translated into Hindi (हिंदी). Keep it very easy to read.",
   "general": {
     "documentType": "e.g. Complete Blood Count Report",
     "documentDate": "YYYY-MM-DD or as written",
@@ -182,6 +178,7 @@ SCHEMA:
       "unit": "g/dL",
       "referenceRange": "13.0 - 17.0",
       "abnormalFlag": "NORMAL | HIGH | LOW | ABNORMAL",
+      "plainExplanation": "If this test is HIGH, LOW, or ABNORMAL, explain what this specific result means in 1 simple sentence (e.g., 'Your iron levels are low, which might make you feel tired'). If NORMAL, leave as empty string.",
       "originalSnippet": "Snippet",
       "confidence": "HIGH | MEDIUM | LOW"
     }
@@ -201,7 +198,7 @@ SCHEMA:
   }
 
   buildPrompt(ocrText, documentCategory) {
-    return `${this.getSystemPrompt()}\n\nDOCUMENT CATEGORY: ${documentCategory}\nRAW OCR TEXT:\n${(ocrText || '').slice(0, 8000)}`;
+    return `${this.getSystemPrompt()}\n\nDOCUMENT CATEGORY: ${documentCategory}\nRAW OCR TEXT:\n${(ocrText || '').slice(0, 8000)}\n\nRETURN ONLY VALID JSON.`;
   }
 }
 

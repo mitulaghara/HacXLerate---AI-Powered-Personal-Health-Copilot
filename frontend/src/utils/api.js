@@ -1004,6 +1004,29 @@ export const api = {
       headers: getHeaders()
     });
     return safeJson(res);
+  },
+
+  // ─── ABDM & HL7 FHIR EXPORT / IMPORT ─────────────────────────────────────────
+  exportDocumentFhirUrl: (documentId) => {
+    return `${API_BASE}/abdm/fhir/document/${documentId}`;
+  },
+
+  linkAbha: async (data = {}) => {
+    const res = await fetch(`${API_BASE}/abdm/link-abha`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify(data)
+    });
+    return safeJson(res);
+  },
+
+  importAbdmRecords: async (patientId) => {
+    const res = await fetch(`${API_BASE}/abdm/import-records`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ patientId })
+    });
+    return safeJson(res);
   }
 };
 

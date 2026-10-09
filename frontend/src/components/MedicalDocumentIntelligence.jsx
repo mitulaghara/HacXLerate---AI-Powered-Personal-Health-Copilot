@@ -55,12 +55,7 @@ export default function MedicalDocumentIntelligence({ onRecordSynchronized, pati
   const [retryingDocId, setRetryingDocId] = useState(null);
   const [activeTab, setActiveTab] = useState('structured'); // 'structured' | 'preview' | 'rawText' | 'audit'
 
-  // Cloud AI Key Configuration & Live Re-analysis
-  const [aiKeyModalOpen, setAiKeyModalOpen] = useState(false);
-  const [aiProvider, setAiProvider] = useState('gemini');
-  const [aiApiKey, setAiApiKey] = useState('');
-  const [savingAiKey, setSavingAiKey] = useState(false);
-  const [reAnalyzing, setReAnalyzing] = useState(false);
+
 
   const cleanFilename = (name) => {
     if (!name) return 'Medical Document';
@@ -103,49 +98,7 @@ export default function MedicalDocumentIntelligence({ onRecordSynchronized, pati
     return parts.join(' ');
   };
 
-  const handleSaveAiKey = async (e) => {
-    e.preventDefault();
-    if (!aiApiKey.trim()) return;
-    try {
-      setSavingAiKey(true);
-      const res = await api.configureAiKey({
-        provider: aiProvider,
-        apiKey: aiApiKey.trim(),
-        model: aiProvider === 'gemini' ? 'gemini-2.5-flash' : 'gpt-4o-mini'
-      });
-      if (res.success) {
-        setSuccessMsg(`${aiProvider === 'gemini' ? 'Google Gemini' : 'OpenAI'} API Key configured successfully! Re-analyzing report...`);
-        setAiKeyModalOpen(false);
-        setAiApiKey('');
-        if (activeDoc) {
-          handleReAnalyze(activeDoc._id);
-        }
-      } else {
-        setErrorMsg(res.message || 'Failed to save API key.');
-      }
-    } catch {
-      setErrorMsg('Error saving API key.');
-    } finally {
-      setSavingAiKey(false);
-    }
-  };
 
-  const handleReAnalyze = async (docId) => {
-    try {
-      setReAnalyzing(true);
-      const res = await api.reAnalyzeDocument(docId);
-      if (res.success && res.document) {
-        setActiveDoc(res.document);
-        setEditableData(JSON.parse(JSON.stringify(res.document.extractedData || {})));
-        setSuccessMsg('Document re-analyzed with cloud AI successfully! ✨');
-        loadDocuments();
-      }
-    } catch {
-      setErrorMsg('Error re-analyzing document.');
-    } finally {
-      setReAnalyzing(false);
-    }
-  };
 
   useEffect(() => {
     loadDocuments();
@@ -1144,37 +1097,6 @@ export default function MedicalDocumentIntelligence({ onRecordSynchronized, pati
                             : 'Automated Clinical Intelligence'}
                         </span>
                       </div>
-
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        {reAnalyzing ? (
-                          <span style={{ fontSize: '0.74rem', color: '#059669', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
-                            <HeartbeatLoader color="#059669" size={12} /> Analyzing...
-                          </span>
-                        ) : (
-                          <button
-                            type="button"
-                            onClick={() => setAiKeyModalOpen(true)}
-                            style={{
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '4px',
-                              padding: '5px 12px',
-                              borderRadius: '8px',
-                              background: '#ffffff',
-                              border: '1px solid #a7f3d0',
-                              color: '#047857',
-                              fontSize: '0.74rem',
-                              fontWeight: 700,
-                              cursor: 'pointer',
-                              boxShadow: '0 1px 2px rgba(0,0,0,0.03)'
-                            }}
-                            title="Connect Google Gemini or OpenAI API Key"
-                          >
-                            <Sparkles size={12} />
-                            <span>Connect Cloud AI</span>
-                          </button>
-                        )}
-                      </div>
                     </div>
 
                     <p style={{ margin: 0, fontSize: '0.88rem', color: '#1e293b', lineHeight: 1.6, fontWeight: 500 }}>
@@ -1666,138 +1588,6 @@ export default function MedicalDocumentIntelligence({ onRecordSynchronized, pati
                 </div>
               )}
             </div>
-          </div>
-        </div>
-      )}
-
-      {/* ═══════════ CLOUD AI KEY CONFIGURATION MODAL ═══════════ */}
-      {aiKeyModalOpen && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'rgba(15, 23, 42, 0.7)',
-          backdropFilter: 'blur(3px)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 10000,
-          padding: '16px'
-        }}>
-          <div style={{
-            background: '#ffffff',
-            borderRadius: '16px',
-            width: '100%',
-            maxWidth: '460px',
-            padding: '24px',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Sparkles size={18} color="#059669" />
-                <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#0f172a' }}>
-                  Connect Cloud AI
-                </h3>
-              </div>
-              <button type="button" onClick={() => setAiKeyModalOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#64748b' }}>
-                <X size={18} />
-              </button>
-            </div>
-
-            <form onSubmit={handleSaveAiKey}>
-              <div style={{ marginBottom: '14px' }}>
-                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 800, color: '#334155', textTransform: 'uppercase', marginBottom: '6px' }}>
-                  AI Provider
-                </label>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-                  <button
-                    type="button"
-                    onClick={() => setAiProvider('gemini')}
-                    style={{
-                      padding: '8px',
-                      borderRadius: '8px',
-                      border: aiProvider === 'gemini' ? '2px solid #059669' : '1px solid #cbd5e1',
-                      background: aiProvider === 'gemini' ? '#ecfdf5' : '#fff',
-                      color: aiProvider === 'gemini' ? '#065f46' : '#475569',
-                      fontWeight: 700,
-                      fontSize: '0.82rem',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Google Gemini
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setAiProvider('openai')}
-                    style={{
-                      padding: '8px',
-                      borderRadius: '8px',
-                      border: aiProvider === 'openai' ? '2px solid #059669' : '1px solid #cbd5e1',
-                      background: aiProvider === 'openai' ? '#ecfdf5' : '#fff',
-                      color: aiProvider === 'openai' ? '#065f46' : '#475569',
-                      fontWeight: 700,
-                      fontSize: '0.82rem',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    OpenAI
-                  </button>
-                </div>
-              </div>
-
-              <div style={{ marginBottom: '18px' }}>
-                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 800, color: '#334155', textTransform: 'uppercase', marginBottom: '6px' }}>
-                  {aiProvider === 'gemini' ? 'Gemini API Key' : 'OpenAI API Key'}
-                </label>
-                <input
-                  type="password"
-                  placeholder={aiProvider === 'gemini' ? 'AIzaSy...' : 'sk-...'}
-                  value={aiApiKey}
-                  onChange={(e) => setAiApiKey(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '9px 12px',
-                    borderRadius: '8px',
-                    border: '1.5px solid #cbd5e1',
-                    fontSize: '0.85rem',
-                    outline: 'none',
-                    boxSizing: 'border-box'
-                  }}
-                  required
-                />
-                <span style={{ fontSize: '0.73rem', color: '#64748b', marginTop: '4px', display: 'block' }}>
-                  Key will be stored securely on the backend server for clinical document reasoning.
-                </span>
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
-                <button
-                  type="button"
-                  onClick={() => setAiKeyModalOpen(false)}
-                  style={{ padding: '8px 16px', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#fff', fontSize: '0.82rem', fontWeight: 700, cursor: 'pointer' }}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={savingAiKey || !aiApiKey.trim()}
-                  style={{
-                    padding: '8px 18px',
-                    borderRadius: '8px',
-                    border: 'none',
-                    background: '#059669',
-                    color: '#fff',
-                    fontSize: '0.82rem',
-                    fontWeight: 800,
-                    cursor: savingAiKey || !aiApiKey.trim() ? 'not-allowed' : 'pointer'
-                  }}
-                >
-                  {savingAiKey ? 'Saving...' : 'Save & Re-analyze'}
-                </button>
-              </div>
-            </form>
           </div>
         </div>
       )}

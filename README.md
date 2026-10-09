@@ -1,6 +1,6 @@
 <!-- ================================================================= -->
 <!-- 🌿 GRAMIN AROGYA // FUTURISTIC RURAL HEALTHCARE INTELLIGENCE HUB -->
-<!-- Smart India Hackathon 2026 (SIH 2026) National Finalist Project    -->
+<!-- HacXLerate 2026 (Team TECHYODHA - byteXL & Marwadi University)   -->
 <!-- ================================================================= -->
 
 <div align="center">
@@ -10,14 +10,14 @@
     <a href="https://graminarogya.vercel.app">
       <img src="https://img.shields.io/badge/PRODUCTION%20EDGE-ONLINE-00FF88?style=for-the-badge&logo=vercel&logoColor=black" alt="Production Status" />
     </a>
-    <a href="https://github.com/mitulaghara/SIH-2026">
-      <img src="https://img.shields.io/badge/SIH%202026-NATIONAL%20FINALIST-00F5FF?style=for-the-badge&logo=target&logoColor=black" alt="SIH 2026" />
+    <a href="https://github.com/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot">
+      <img src="https://img.shields.io/badge/HacXLerate%202026-FINALIST-00F5FF?style=for-the-badge&logo=target&logoColor=black" alt="HacXLerate 2026" />
     </a>
-    <a href="https://github.com/mitulaghara/SIH-2026/stargazers">
-      <img src="https://img.shields.io/github/stars/mitulaghara/SIH-2026?style=for-the-badge&logo=apachespark&color=8B5CF6&logoColor=white" alt="Stars" />
+    <a href="https://github.com/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot/stargazers">
+      <img src="https://img.shields.io/github/stars/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot?style=for-the-badge&logo=apachespark&color=8B5CF6&logoColor=white" alt="Stars" />
     </a>
-    <a href="https://github.com/mitulaghara/SIH-2026/network/members">
-      <img src="https://img.shields.io/github/forks/mitulaghara/SIH-2026?style=for-the-badge&logo=git&color=FF00E5&logoColor=white" alt="Forks" />
+    <a href="https://github.com/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot/network/members">
+      <img src="https://img.shields.io/github/forks/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot?style=for-the-badge&logo=git&color=FF00E5&logoColor=white" alt="Forks" />
     </a>
     <a href="./LICENSE">
       <img src="https://img.shields.io/badge/LICENSE-MIT-38BDF8?style=for-the-badge&logo=open-source-initiative&logoColor=white" alt="License" />
@@ -318,8 +318,8 @@
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/mitulaghara/SIH-2026.git
-cd SIH-2026
+git clone https://github.com/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot.git
+cd "HacXLerate - AI-Powered Personal Health Copilot"
 
 # 2. Install all dependencies concurrently across root, backend, and frontend
 npm run install:all
@@ -485,7 +485,7 @@ POST  /api/auth/forgot-password/reset  # Securely set new encrypted password
 ## 📂 07 // Repository Topology
 
 ```
-SIH-2026/
+HacXLerate-Health-Copilot/
 ├── 📁 assets/                     # Futuristic SVG banners, dividers & system diagrams
 │   ├── architecture-diagram.svg   # 3D Tiered system architecture HUD
 │   ├── hero-banner.svg            # Animated cyberpunk 3D hero visual
@@ -685,14 +685,21 @@ copies of the Software.
 <!-- 14. AUTHOR & DEVELOPER PROFILE                                    -->
 <!-- ================================================================= -->
 
-## 👨‍💻 13 // Lead Architect & Developer
+## 👨‍💻 13 // Lead Architects & Team Contributors
 
-<table align="center">
+<div align="center">
+  <p style="color:#00F5FF; font-family:'Courier New', monospace; font-size:12px; letter-spacing:1.5px; margin-bottom:14px;">
+    ⚡ TEAM TECHYODHA • HACXLERATE 2026 NATIONAL FINALISTS [TEAM ID: XLO636] ⚡
+  </p>
+</div>
+
+<table align="center" width="100%">
   <tr>
-    <td align="center" style="background:#090a14; border: 1.5px solid #00F5FF; border-radius: 12px; padding: 20px; color: #F8FAFC;">
+    <!-- MITUL AGHARA -->
+    <td width="50%" align="center" style="background:#090a14; border: 1.5px solid #00F5FF; border-radius: 12px; padding: 20px; color: #F8FAFC;">
       <h3 style="color:#00F5FF; margin:0 0 6px 0;">Mitul Aghara</h3>
       <p style="color:#94A3B8; font-family:'Courier New', monospace; font-size:12px; margin:0 0 14px 0;">
-        Full Stack Systems Architect • SIH 2026 National Finalist
+        Full Stack Systems Architect • HacXLerate Finalist
       </p>
       <p align="center">
         <a href="https://github.com/mitulaghara">
@@ -709,8 +716,87 @@ copies of the Software.
         Dedicated to engineering mission-critical digital infrastructure for rural empowerment.
       </p>
     </td>
+    <!-- MANTHAN MAKWANA -->
+    <td width="50%" align="center" style="background:#090a14; border: 1.5px solid #8B5CF6; border-radius: 12px; padding: 20px; color: #F8FAFC;">
+      <h3 style="color:#C084FC; margin:0 0 6px 0;">Manthan Makwana</h3>
+      <p style="color:#94A3B8; font-family:'Courier New', monospace; font-size:12px; margin:0 0 14px 0;">
+        Team Lead & Full Stack Engineer • HacXLerate Finalist
+      </p>
+      <p align="center">
+        <a href="https://github.com/Manthan-Makwana">
+          <img src="https://img.shields.io/badge/GitHub-Manthan--Makwana-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+        </a>
+        <a href="mailto:makwanamanthan657@gmail.com">
+          <img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+        </a>
+        <a href="mailto:manthan.makwana130093@marwadiuniversity.ac.in">
+          <img src="https://img.shields.io/badge/Academic-Connect-0A66C2?style=for-the-badge&logo=google-classroom&logoColor=white" alt="Academic" />
+        </a>
+      </p>
+      <p style="color:#64748B; font-size:11px; margin-top:8px;">
+        Leading Team TECHYODHA, driving full-stack engineering & clinical system integrations.
+      </p>
+    </td>
   </tr>
 </table>
+
+<br/>
+
+<table align="center" width="100%">
+  <tr>
+    <!-- MAITRI ADROJA -->
+    <td width="33.3%" align="center" style="background:#090a14; border: 1.5px solid #00FF88; border-radius: 12px; padding: 18px; color: #F8FAFC;">
+      <h3 style="color:#00FF88; margin:0 0 6px 0;">Maitri Adroja</h3>
+      <p style="color:#94A3B8; font-family:'Courier New', monospace; font-size:12px; margin:0 0 14px 0;">
+        Frontend & UI/UX Specialist • HacXLerate Finalist
+      </p>
+      <p align="center">
+        <a href="mailto:maitri.adroja130626@marwadiuniversity.ac.in">
+          <img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+        </a>
+      </p>
+      <p style="color:#64748B; font-size:11px; margin-top:8px;">
+        Crafting accessible, human-centric responsive clinical interfaces for frontline workers.
+      </p>
+    </td>
+    <!-- KRISHA PANCHOTIYA -->
+    <td width="33.3%" align="center" style="background:#090a14; border: 1.5px solid #EC4899; border-radius: 12px; padding: 18px; color: #F8FAFC;">
+      <h3 style="color:#F472B6; margin:0 0 6px 0;">Krisha Panchotiya</h3>
+      <p style="color:#94A3B8; font-family:'Courier New', monospace; font-size:12px; margin:0 0 14px 0;">
+        AI & Healthcare Data • HacXLerate Finalist
+      </p>
+      <p align="center">
+        <a href="mailto:krishnaben.panchotiya130037@marwadiuniversity.ac.in">
+          <img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+        </a>
+      </p>
+      <p style="color:#64748B; font-size:11px; margin-top:8px;">
+        Designing clinical triage data pipelines and epidemiological surveillance models.
+      </p>
+    </td>
+    <!-- KRUPA MAKWANA -->
+    <td width="33.3%" align="center" style="background:#090a14; border: 1.5px solid #38BDF8; border-radius: 12px; padding: 18px; color: #F8FAFC;">
+      <h3 style="color:#38BDF8; margin:0 0 6px 0;">Krupa Makwana</h3>
+      <p style="color:#94A3B8; font-family:'Courier New', monospace; font-size:12px; margin:0 0 14px 0;">
+        QA & Compliance • HacXLerate Finalist
+      </p>
+      <p align="center">
+        <a href="mailto:krupa.makwana130100@marwadiuniversity.ac.in">
+          <img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+        </a>
+      </p>
+      <p style="color:#64748B; font-size:11px; margin-top:8px;">
+        Ensuring cross-tier clinical validation, offline sync reliability, and legal health compliance.
+      </p>
+    </td>
+  </tr>
+</table>
+
+<p align="center" style="margin-top: 16px;">
+  <span style="color:#00F5FF; font-size:18px;">•</span>&nbsp;&nbsp;
+  <span style="color:#00FF88; font-size:20px;">◆</span>&nbsp;&nbsp;
+  <span style="color:#EC4899; font-size:18px;">•</span>
+</p>
 
 <p align="center">
   <img src="./assets/neon-divider.svg" alt="Cyber Divider" width="100%" />
@@ -728,8 +814,8 @@ copies of the Software.
     If <strong>GraminArogya</strong> inspired your hackathon build, research project, or rural health initiative, please show your support by <strong>starring this repository</strong>!
   </p>
 
-  <a href="https://github.com/mitulaghara/SIH-2026">
-    <img src="https://img.shields.io/badge/⭐%20STAR%20ON%20GITHUB-SIH--2026-00FF88?style=for-the-badge&labelColor=050509" alt="Star Repository" />
+  <a href="https://github.com/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot">
+    <img src="https://img.shields.io/badge/⭐%20STAR%20ON%20GITHUB-HacXLerate--Copilot-00FF88?style=for-the-badge&labelColor=050509" alt="Star Repository" />
   </a>
 
   <br/><br/>
@@ -742,7 +828,7 @@ copies of the Software.
   </p>
 
   <p style="color:#64748B; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px;">
-    🌿 GRAMIN AROGYA // BUILT WITH DEDICATION FOR SMART INDIA HACKATHON 2026<br/>
+    🌿 GRAMIN AROGYA // BUILT WITH DEDICATION FOR HACXLERATE 2026 (TEAM TECHYODHA)<br/>
     ENGINEERED FOR THE HEALTHCARE DIGNITY OF 800+ MILLION RURAL CITIZENS
   </p>
 

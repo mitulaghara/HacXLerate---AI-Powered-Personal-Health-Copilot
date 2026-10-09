@@ -376,7 +376,7 @@ export default function VoiceModal({
             />
           </div>
 
-          {/* SIH Presentation Presets */}
+          {/* HacXLerate Presentation Presets */}
           <div style={{ marginTop: '14px' }}>
             <div style={{
               display: 'flex',

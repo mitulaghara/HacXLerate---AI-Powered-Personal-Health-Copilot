@@ -1,7 +1,7 @@
 {
   "name": "gramin-arogya-rural-health",
   "version": "1.0.0",
-  "description": "GraminArogya: Rural Health Access, Continuity & Resource Intelligence Platform for Smart India Hackathon (SIH)",
+  "description": "GraminArogya: AI-Powered Personal Health Copilot & Rural Health Intelligence Platform for HacXLerate 2026",
   "scripts": {
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:backend": "cd backend && npm run dev",

@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const AuditLog = require('../models/AuditLog');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'gramin_arogya_secure_sih_2026_jwt_token_key';
+const JWT_SECRET = process.env.JWT_SECRET || 'gramin_arogya_secure_hacxlerate_2026_jwt_token_key';
 
 // 1. Authenticate JWT Middleware
 const authenticateJWT = async (req, res, next) => {

@@ -30,7 +30,7 @@ export default function AtlasModal({
       });
     }
   }, [isOpen]);
-  if (!isOpen) return null;
+
   const handleConnect = async e => {
     e.preventDefault();
     if (!mongoUri) return;
@@ -131,139 +131,139 @@ export default function AtlasModal({
           marginBottom: '18px'
         }}>
           <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px'
-        }}>
-            <div style={{
-            padding: '10px'
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px'
           }}>
+            <div style={{
+              padding: '10px'
+            }}>
               <Database size={24} />
             </div>
             <div>
               <h3 style={{
-              fontSize: '1.3rem',
-              fontWeight: 800
-            }}>
+                fontSize: '1.3rem',
+                fontWeight: 800
+              }}>
                 MongoDB Atlas Configuration
               </h3>
               <p style={{
-              fontSize: '0.8rem'
-            }}>
+                fontSize: '0.8rem'
+              }}>
                 Connect your cloud cluster or run in dynamic hybrid memory storage.
               </p>
             </div>
           </div>
           <button onClick={onClose} style={{
-          border: 'none',
-          padding: '6px',
-          cursor: 'pointer'
-        }}>
+            border: 'none',
+            padding: '6px',
+            cursor: 'pointer'
+          }}>
             <X size={18} color="#4b5563" />
           </button>
         </div>
 
         {/* Current Status Box */}
         <div style={{
-        padding: '16px',
-        border: "1px solid #000",
-        marginBottom: '18px'
-      }}>
-          <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '8px'
+          padding: '16px',
+          border: "1px solid #000",
+          marginBottom: '18px'
         }}>
-            <span style={{
-            fontSize: '0.82rem',
-            fontWeight: 600
-          }}>Active Storage Engine:</span>
-            <div style={{
-            display: 'inline-flex',
+          <div style={{
+            display: 'flex',
             alignItems: 'center',
-            gap: '6px',
-            padding: '3px 10px',
-            fontSize: '0.75rem',
-            fontWeight: 700,
-            border: `1px solid ${dbStatus?.isConnected ? '#86efac' : '#a7f3d0'}`
+            justifyContent: 'space-between',
+            marginBottom: '8px'
           }}>
+            <span style={{
+              fontSize: '0.82rem',
+              fontWeight: 600
+            }}>Active Storage Engine:</span>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '3px 10px',
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              border: `1px solid ${dbStatus?.isConnected ? '#86efac' : '#a7f3d0'}`
+            }}>
               <Server size={13} />
               <span>{dbStatus?.isConnected ? '🟢 MongoDB Atlas Cloud Cluster' : '⚡ Dynamic In-Memory / Seed Mode'}</span>
             </div>
           </div>
           <div style={{
-          fontSize: '0.78rem'
-        }}>
+            fontSize: '0.78rem'
+          }}>
             <strong>Connection String:</strong> {dbStatus?.uriMasked || 'Default Memory Store'}
           </div>
         </div>
 
         {/* Form to enter custom Atlas URI */}
         <form onSubmit={handleConnect} style={{
-        marginBottom: '18px'
-      }}>
-          <label style={{
-          display: 'block',
-          fontSize: '0.82rem',
-          fontWeight: 700,
-          marginBottom: '6px'
+          marginBottom: '18px'
         }}>
+          <label style={{
+            display: 'block',
+            fontSize: '0.82rem',
+            fontWeight: 700,
+            marginBottom: '6px'
+          }}>
             Enter MongoDB Atlas Connection String:
           </label>
           <div style={{
-          display: 'flex',
-          gap: '8px'
-        }}>
-            <input type="text" placeholder="mongodb+srv://<username>:<password>@cluster0.mongodb.net/gramin_arogya" value={mongoUri} onChange={e => setMongoUri(e.target.value)} style={{
-            flex: 1,
-            padding: '10px 14px',
-            border: "1px solid #000",
-            fontSize: '0.85rem',
-            outline: 'none'
-          }} />
-            <button type="submit" disabled={loading || !mongoUri} className="btn-primary" style={{
-            padding: '8px 16px',
-            fontSize: '0.85rem'
+            display: 'flex',
+            gap: '8px'
           }}>
+            <input type="text" placeholder="mongodb+srv://<username>:<password>@cluster0.mongodb.net/gramin_arogya" value={mongoUri} onChange={e => setMongoUri(e.target.value)} style={{
+              flex: 1,
+              padding: '10px 14px',
+              border: "1px solid #000",
+              fontSize: '0.85rem',
+              outline: 'none'
+            }} />
+            <button type="submit" disabled={loading || !mongoUri} className="btn-primary" style={{
+              padding: '8px 16px',
+              fontSize: '0.85rem'
+            }}>
               {loading ? 'Connecting...' : 'Connect'}
             </button>
           </div>
           <p style={{
-          fontSize: '0.72rem',
-          marginTop: '6px'
-        }}>
+            fontSize: '0.72rem',
+            marginTop: '6px'
+          }}>
             💡 Tip: Make sure your MongoDB Atlas cluster has <strong>Network Access (0.0.0.0/0)</strong> enabled.
           </p>
         </form>
 
         {/* Seed button */}
         <div style={{
-        padding: '16px',
-        border: "1px solid #000",
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '10px'
-      }}>
+          padding: '16px',
+          border: "1px solid #000",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '10px'
+        }}>
           <div>
             <div style={{
-            fontSize: '0.88rem',
-            fontWeight: 700
-          }}>
-              Populate SIH Rural Health Demo Dataset
+              fontSize: '0.88rem',
+              fontWeight: 700
+            }}>
+              Populate HacXLerate Rural Health Demo Dataset
             </div>
             <div style={{
-            fontSize: '0.75rem'
-          }}>
+              fontSize: '0.75rem'
+            }}>
               Seeds realistic PHCs, CHCs, medicine stocks, and patients.
             </div>
           </div>
           <button type="button" onClick={handleSeed} disabled={seedLoading} className="btn-secondary" style={{
-          padding: '7px 14px',
-          fontSize: '0.8rem'
-        }}>
+            padding: '7px 14px',
+            fontSize: '0.8rem'
+          }}>
             <Sparkles size={14} color="#059669" />
             <span>{seedLoading ? 'Seeding...' : 'Seed Database'}</span>
           </button>
@@ -271,26 +271,27 @@ export default function AtlasModal({
 
         {/* Feedback alert */}
         {feedback.message && <div style={{
-        marginTop: '14px',
-        padding: '10px 14px',
-        fontSize: '0.82rem',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px'
-      }}>
-            {feedback.type === 'success' ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}
-            <span>{feedback.message}</span>
-          </div>}
+          marginTop: '14px',
+          padding: '10px 14px',
+          fontSize: '0.82rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px'
+        }}>
+          {feedback.type === 'success' ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}
+          <span>{feedback.message}</span>
+        </div>}
 
         <div style={{
-        marginTop: '18px',
-        display: 'flex',
-        justifyContent: 'flex-end'
-      }}>
+          marginTop: '18px',
+          display: 'flex',
+          justifyContent: 'flex-end'
+        }}>
           <button type="button" onClick={onClose} className="btn-secondary">
             Close
           </button>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 }

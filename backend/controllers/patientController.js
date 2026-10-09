@@ -5,7 +5,7 @@ const Patient = require('../models/Patient');
 const Prescription = require('../models/Prescription');
 const Referral = require('../models/Referral');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'gramin_arogya_secure_sih_2026_jwt_token_key';
+const JWT_SECRET = process.env.JWT_SECRET || 'gramin_arogya_secure_hacxlerate_2026_jwt_token_key';
 
 // In-memory OTP store for patient profile verification (10-minute expiry)
 const patientOtpStore = new Map(); // userId -> { otp, expiresAt, email }
@@ -638,7 +638,7 @@ exports.sendProfileOtp = async (req, res) => {
               </div>
               <p style="color: #6b7280; font-size: 0.82rem;">If you did not request this, you can safely ignore this email.</p>
               <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;" />
-              <div style="font-size: 0.72rem; color: #9ca3af; text-align: center;">SIH 2026 • Ministry of Health & Family Welfare • GraminArogya Platform</div>
+              <div style="font-size: 0.72rem; color: #9ca3af; text-align: center;">HacXLerate 2026 • Ministry of Health & Family Welfare • GraminArogya Platform</div>
             </div>
           `
         });

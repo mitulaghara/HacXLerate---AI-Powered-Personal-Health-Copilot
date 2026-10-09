@@ -560,7 +560,7 @@ export default function SmartRouting({
         </div>
       </div>
 
-      {/* SIH Killer Differentiator Callout Banner */}
+      {/* HacXLerate Killer Differentiator Callout Banner */}
       {smartAdvantage && sortBy === 'suitability' && <div style={{
         background: 'rgba(11, 107, 104, 0.04)',
         border: '1px solid rgba(11, 107, 104, 0.2)',

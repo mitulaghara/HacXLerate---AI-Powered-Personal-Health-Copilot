@@ -6,7 +6,7 @@ const User = require('../models/User');
 const Patient = require('../models/Patient');
 const Referral = require('../models/Referral');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'gramin_arogya_secure_sih_2026_jwt_token_key';
+const JWT_SECRET = process.env.JWT_SECRET || 'gramin_arogya_secure_hacxlerate_2026_jwt_token_key';
 
 // In-memory OTP storage for rapid verification (with 10-minute expiry)
 const otpStore = new Map(); // email -> { otp: '123456', expiresAt: timestamp }
@@ -369,7 +369,7 @@ exports.sendEmailOtp = async (req, res) => {
               </div>
               <p style="color: #4b5563; font-size: 0.85rem; line-height: 1.5;">This email was sent to authenticate your doctor account on the GraminArogya Rural Healthcare Intelligence Platform.</p>
               <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;" />
-              <div style="font-size: 0.75rem; color: #9ca3af; text-align: center;">SIH 2026 • Ministry of Health & Family Welfare</div>
+              <div style="font-size: 0.75rem; color: #9ca3af; text-align: center;">HacXLerate 2026 • Ministry of Health & Family Welfare</div>
             </div>
           `
         });
@@ -1678,7 +1678,7 @@ exports.sendFollowUpOtp = async (req, res) => {
               </div>
               <p style="color: #4b5563; font-size: 0.85rem;">This confirms your follow-up visit at GraminArogya Rural Healthcare Portal.</p>
               <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;" />
-              <div style="font-size: 0.75rem; color: #9ca3af; text-align: center;">SIH 2026 • Ministry of Health & Family Welfare</div>
+              <div style="font-size: 0.75rem; color: #9ca3af; text-align: center;">HacXLerate 2026 • Ministry of Health & Family Welfare</div>
             </div>
           `
         });

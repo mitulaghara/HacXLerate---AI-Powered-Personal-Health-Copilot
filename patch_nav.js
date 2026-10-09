@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const filePath = path.join('d:', 'finalsih', 'SIH-2026', 'frontend', 'src', 'views', 'DoctorPanel.jsx');
+const filePath = path.join(__dirname, 'frontend', 'src', 'views', 'DoctorPanel.jsx');
 let content = fs.readFileSync(filePath, 'utf8');
 
 // Ensure all needed icons are imported

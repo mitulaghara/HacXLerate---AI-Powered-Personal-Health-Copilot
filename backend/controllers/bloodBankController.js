@@ -444,7 +444,7 @@ exports.getBloodBanks = async (req, res) => {
       }
     }
 
-    // === 2. GOOGLE PLACES API AGGREGATOR (Plug-and-play for SIH) ===
+    // === 2. GOOGLE PLACES API AGGREGATOR (Plug-and-play for HacXLerate) ===
     // Just add GOOGLE_PLACES_API_KEY to your .env to automatically merge Google Maps data!
     const GOOGLE_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
     if (hasCoords && GOOGLE_API_KEY) {

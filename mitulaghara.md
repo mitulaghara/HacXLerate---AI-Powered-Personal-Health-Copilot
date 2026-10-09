@@ -7,7 +7,7 @@
 
 <!-- Typing Animation Tagline -->
 <a href="https://github.com/mitulaghara">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&duration=3000&pause=1000&color=00F0FF&center=true&vCenter=true&width=780&height=42&lines=Full-Stack+Engineer+%7C+MERN+%26+ASP.NET+Core;Architecting+GraminArogya+(SIH-2026)+Healthcare+Platform;Building+VillageConnect+%26+High-Performance+Distributed+Web;Turning+Complex+Algorithms+into+Production+Digital+Rails" alt="Typing Tagline Animation" />
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&duration=3000&pause=1000&color=00F0FF&center=true&vCenter=true&width=780&height=42&lines=Full-Stack+Engineer+%7C+MERN+%26+ASP.NET+Core;Architecting+GraminArogya+(HacXLerate-2026)+Healthcare+Platform;Building+VillageConnect+%26+High-Performance+Distributed+Web;Turning+Complex+Algorithms+into+Production+Digital+Rails" alt="Typing Tagline Animation" />
 </a>
 
 <br/>
@@ -42,7 +42,7 @@ mission:
   statement: "Translating algorithmic problem-solving into production-ready software that solves real-world challenges at national scale."
 ```
 
-- 🏛️ **National Hackathon Finalist & HealthTech Lead:** Core architect of **GraminArogya (SIH-2026)**, engineering offline-first clinical field sync, multilingual AI voice triage, encrypted QR referral passports, and multi-tier MongoDB Atlas cloud infrastructure.
+- 🏛️ **National Hackathon Finalist & HealthTech Lead:** Core architect of **GraminArogya (HacXLerate-2026)**, engineering offline-first clinical field sync, multilingual AI voice triage, encrypted QR referral passports, and multi-tier MongoDB Atlas cloud infrastructure.
 - 🌾 **Direct Community Commerce:** Designed and deployed **VillageConnect**, enabling disintermediated rural-to-urban commerce across India with zero commissions.
 - ⚡ **Full-Stack Craftsmanship:** Specialized in high-performance Single Page Applications, secure RESTful microservices, real-time WebSocket state synchronization, and rock-solid database migrations.
 - 🛠️ **Strong Algorithmic Foundation:** Solid background in Data Structures & Algorithms, Design & Analysis of Algorithms (DAA), Database Management Systems, and Computer Networks.
@@ -153,7 +153,7 @@ mission:
     <!-- GraminArogya -->
     <td width="50%" valign="top">
       <div align="left">
-        <h3>🏥 GraminArogya (SIH-2026)</h3>
+        <h3>🏥 GraminArogya (HacXLerate-2026)</h3>
         <p><b>National Healthcare Access, Continuity & Resource Intelligence Platform</b></p>
         <p>Engineered for frontline ASHA workers and rural doctors. Features multilingual AI voice triage, offline-first clinical synchronization, encrypted QR referral passports, real-time medicine inventory management, and disease outbreak surveillance.</p>
         <p>
@@ -164,7 +164,7 @@ mission:
           <img src="https://img.shields.io/badge/Vercel_Prod-0A0F2C?style=flat-square&logo=vercel&logoColor=00F0FF" alt="Vercel"/>
         </p>
         <p>
-          <a href="https://github.com/mitulaghara/SIH-2026"><b>💻 Source Code</b></a> &nbsp;•&nbsp;
+          <a href="https://github.com/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot"><b>💻 Source Code</b></a> &nbsp;•&nbsp;
           <a href="https://graminarogya.vercel.app/"><b>🌐 Live Platform</b></a>
         </p>
       </div>
@@ -283,7 +283,7 @@ mission:
 
 | Vector | Initiative & Technical Focus |
 | :--- | :--- |
-| **🏥 National HealthTech** | Scaling **GraminArogya** with multi-tier MongoDB Atlas clustering, zero-data-loss offline sync queues, and automated clinical triage models for Smart India Hackathon. |
+| **🏥 National HealthTech** | Scaling **GraminArogya** with multi-tier MongoDB Atlas clustering, zero-data-loss offline sync queues, and automated clinical triage models for HacXLerate Hackathon. |
 | **🤖 Multilingual Voice AI** | Developing low-latency voice-driven clinical capture agents using Google Gemini API to translate spoken Gujarati/Hindi into structured clinical notes. |
 | **⚡ High-Concurrency Web** | Researching resilient database migration strategies, connection caching in serverless lambda environments, and real-time event streaming architectures. |
 | **📚 Core Computer Science** | Deepening mastery of advanced graph algorithms, dynamic programming ([DAA-Practicals](https://github.com/mitulaghara/DAA-Practicals)), and distributed database internals at Marwadi University. |

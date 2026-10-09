@@ -4650,7 +4650,7 @@ export default function DoctorPanel({
               marginTop: '16px',
               fontSize: '0.74rem'
             }}>
-                    Secured by Google Identity Services • SIH 2026
+                    Secured by Google Identity Services • HacXLerate 2026
                   </div>
                 </div>}
 

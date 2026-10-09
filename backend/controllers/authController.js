@@ -4,7 +4,7 @@ const User = require('../models/User');
 const Patient = require('../models/Patient');
 const DoctorProfile = require('../models/DoctorProfile');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'gramin_arogya_secure_sih_2026_jwt_token_key';
+const JWT_SECRET = process.env.JWT_SECRET || 'gramin_arogya_secure_hacxlerate_2026_jwt_token_key';
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '';
 const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
 const crypto = require('crypto');

@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // 1. Patch Backend doctorController.js
-const docCtrlPath = path.join('d:', 'finalsih', 'SIH-2026', 'backend', 'controllers', 'doctorController.js');
+const docCtrlPath = path.join(__dirname, 'backend', 'controllers', 'doctorController.js');
 let docCtrl = fs.readFileSync(docCtrlPath, 'utf8');
 
 const targetStr = `    const updateData = {

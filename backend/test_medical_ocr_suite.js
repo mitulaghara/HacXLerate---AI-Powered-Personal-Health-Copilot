@@ -234,15 +234,15 @@ Rx:
     await MedicalDocument.findByIdAndDelete(testDoc._id);
 
     // ─────────────────────────────────────────────────────────────────────────
-    // TEST 6: AI Provider Graceful Fallback (When API Key is missing or invalid)
+    // TEST 6: AI Provider Graceful Fallback & Cloud Integration (Google Gemini)
     // ─────────────────────────────────────────────────────────────────────────
-    console.log('\n--- TEST 6: AI Service Graceful Fallback ---');
+    console.log('\n--- TEST 6: Google Gemini AI Service & Graceful Fallback ---');
     const aiFallbackResult = await aiMedicalService.extractStructuredMedicalData('Some random medical text');
-    if (!process.env.OPENAI_API_KEY) {
-      assert(aiFallbackResult.status === 'UNAVAILABLE', 'Test 6.1: When OPENAI_API_KEY is not configured, status is UNAVAILABLE');
-      assert(!aiFallbackResult.extractedData, 'Test 6.2: No fake/invented AI medical fields returned');
+    if (process.env.GEMINI_API_KEY) {
+      assert(aiFallbackResult.status === 'COMPLETED' || aiFallbackResult.status === 'FAILED', 'Test 6.1: Gemini AI Service executed with configured API key');
     } else {
-      assert(aiFallbackResult.status === 'COMPLETED' || aiFallbackResult.status === 'FAILED', 'Test 6.1: AI Service executed with configured API key');
+      assert(aiFallbackResult.status === 'UNAVAILABLE', 'Test 6.1: When GEMINI_API_KEY is not configured, status is UNAVAILABLE');
+      assert(!aiFallbackResult.extractedData, 'Test 6.2: No fake/invented AI medical fields returned');
     }
 
     // ─────────────────────────────────────────────────────────────────────────

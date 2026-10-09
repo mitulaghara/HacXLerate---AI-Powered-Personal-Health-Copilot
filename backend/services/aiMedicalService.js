@@ -1,10 +1,9 @@
-const OpenAI = require('openai');
 const { GoogleGenAI } = require('@google/genai');
 
 /**
  * AI-Powered Structured Medical Information Extraction Service
- * Supports Google Gemini API (GEMINI_API_KEY), OpenAI API (OPENAI_API_KEY),
- * and built-in GraminArogya Clinical Intelligence synthesizer.
+ * Powered exclusively by Google Gemini API (GEMINI_API_KEY) with
+ * built-in GraminArogya Clinical Intelligence synthesizer.
  */
 class AIMedicalService {
   constructor() {
@@ -12,12 +11,8 @@ class AIMedicalService {
   }
 
   refreshClients() {
-    this.openaiKey = process.env.OPENAI_API_KEY || '';
-    this.openaiModel = process.env.OPENAI_MODEL || 'gpt-4o-mini';
     this.geminiKey = process.env.GEMINI_API_KEY || '';
-    this.geminiModel = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
-
-    this.openaiClient = null;
+    this.geminiModel = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
     this.geminiClient = null;
 
     if (this.geminiKey) {
@@ -27,29 +22,16 @@ class AIMedicalService {
         console.warn('Gemini initialization note:', err.message);
       }
     }
-
-    if (this.openaiKey) {
-      try {
-        this.openaiClient = new OpenAI({
-          apiKey: this.openaiKey,
-          timeout: 35000,
-          maxRetries: 1
-        });
-      } catch (err) {
-        console.warn('OpenAI initialization note:', err.message);
-      }
-    }
   }
 
   isConfigured() {
     this.refreshClients();
-    return Boolean(this.geminiClient || this.openaiClient);
+    return Boolean(this.geminiClient);
   }
 
   getActiveProvider() {
     this.refreshClients();
-    if (this.geminiClient) return { provider: 'Gemini', model: this.geminiModel };
-    if (this.openaiClient) return { provider: 'OpenAI', model: this.openaiModel };
+    if (this.geminiClient) return { provider: 'Google Gemini', model: this.geminiModel };
     return { provider: 'ClinicalIntelligence', model: 'GraminArogya Clinical Engine v1.0' };
   }
 
@@ -150,45 +132,13 @@ class AIMedicalService {
       }
     }
 
-    // 2. If OpenAI is configured
-    if (this.openaiClient) {
-      try {
-        const systemPrompt = this.getSystemPrompt();
-        const userPrompt = `DOCUMENT CATEGORY HINT: ${documentCategory}\n\nRAW EXTRACTED OCR TEXT:\n${(ocrText || '').slice(0, 8000)}`;
-
-        const response = await this.openaiClient.chat.completions.create({
-          model: this.openaiModel,
-          messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: userPrompt }
-          ],
-          response_format: { type: 'json_object' },
-          temperature: 0.1,
-          max_tokens: 2000
-        });
-
-        const rawContent = response.choices?.[0]?.message?.content || '{}';
-        const parsed = JSON.parse(rawContent);
-
-        return {
-          status: 'COMPLETED',
-          modelUsed: `OpenAI (${this.openaiModel})`,
-          summary: parsed.summary || this.synthesizeClinicalSummary(parsed, ocrEngine, ocrConfidence),
-          error: null,
-          extractedData: parsed
-        };
-      } catch (openaiErr) {
-        console.warn('OpenAI extraction error, falling back:', openaiErr.message);
-      }
-    }
-
-    // If neither cloud AI is configured and no baseline data was passed (e.g. standalone AI service test)
-    if (!this.openaiClient && !this.geminiClient && !baselineData) {
+    // If Gemini is not configured and no baseline data was passed (e.g. standalone test)
+    if (!this.geminiClient && !baselineData) {
       return {
         status: 'UNAVAILABLE',
         modelUsed: null,
         summary: 'Cloud AI extraction unavailable. Genuine OCR text and deterministic baseline fields are provided.',
-        error: 'OPENAI_API_KEY not configured',
+        error: 'GEMINI_API_KEY not configured',
         extractedData: null
       };
     }

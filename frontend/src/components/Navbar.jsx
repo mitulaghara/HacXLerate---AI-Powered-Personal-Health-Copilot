@@ -25,11 +25,13 @@ import {
   MapPin,
   Building2,
   BookOpen,
-  LayoutDashboard
+  LayoutDashboard,
+  Globe
 } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ROLE_NAV_ITEMS, getRoleDefaultTab } from '../utils/navigationConfig';
 import { api } from '../utils/api';
+import { LANGUAGES, changeApplicationLanguage } from '../utils/languageHelper';
 
 export default function Navbar({
   activeTab,
@@ -66,7 +68,7 @@ export default function Navbar({
             api.getDoctorReminders(),
             api.getDoctorProfile()
           ]);
-          
+
           if (remindersRes.status === 'fulfilled' && remindersRes.value?.success && remindersRes.value.reminders) {
             setPendingRemindersCount(remindersRes.value.reminders.filter(r => r.status === 'PENDING').length);
           }
@@ -525,7 +527,7 @@ export default function Navbar({
 
         {/* Right Header Actions: 108 SOS & Hamburger Button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          
+
           {/* Add language selector to mobile */}
           <div className="mobile-lang-wrapper" style={{ transform: 'scale(0.85)' }}>
             <LanguageSelector />
@@ -633,7 +635,7 @@ export default function Navbar({
 
         {/* Center Navigation: Streamlined Dropdown Navigation */}
         <nav className="desktop-nav" style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', alignItems: 'center', flexShrink: 0 }} aria-label="Primary">
-          
+
           {/* 1. RURAL HEALTH DROPDOWN (Matches Public Website) */}
           <div className="nav-dropdown-wrapper">
             <button
@@ -851,9 +853,9 @@ export default function Navbar({
 
         {/* Right Actions Group */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
-          
+
           <LanguageSelector />
-          
+
           {/* User Profile Chip with Dropdown */}
           <div className="nav-dropdown-wrapper">
             <div
@@ -928,7 +930,7 @@ export default function Navbar({
             </div>
 
             {openDropdown === 'userMenu' && (
-              <div className="nav-dropdown-menu align-right" style={{ minWidth: '220px' }}>
+              <div className="nav-dropdown-menu align-right" style={{ minWidth: '250px' }}>
                 <div className="nav-dropdown-header">
                   {currentUser?.name || currentUser?.username || 'Authenticated User'}
                 </div>
@@ -939,8 +941,8 @@ export default function Navbar({
                 >
                   <UserCheck size={15} strokeWidth={2} color="var(--primary)" />
                   <div>
-                    <div>My Profile & Settings</div>
-                    <div className="nav-dropdown-item-desc">View credentials & clinic</div>
+                    <div>{t('nav.profile', 'My Profile & Settings')}</div>
+                    <div className="nav-dropdown-item-desc">{t('nav.view_credentials', 'View credentials & clinic')}</div>
                   </div>
                 </button>
                 {isDoctor && (
@@ -951,11 +953,73 @@ export default function Navbar({
                   >
                     <LayoutDashboard size={15} strokeWidth={2} color="var(--primary)" />
                     <div>
-                      <div>Clinical Dashboard</div>
-                      <div className="nav-dropdown-item-desc">Patient records & actions</div>
+                      <div>{t('nav.dashboard', 'Clinical Dashboard')}</div>
+                      <div className="nav-dropdown-item-desc">{t('nav.patient_records', 'Patient records & actions')}</div>
                     </div>
                   </button>
                 )}
+                <div style={{ height: '1px', background: 'var(--borderLight)', margin: '4px 0' }} />
+
+                {/* Language Selection Item */}
+                <div
+                  className="nav-dropdown-item"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '10px',
+                    padding: '8px 12px',
+                    cursor: 'default'
+                  }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
+                    <Globe size={15} strokeWidth={2} color="var(--primary)" />
+                    <div>
+                      <div style={{ fontWeight: 500, color: 'var(--foreground)' }}>{t('nav.language', 'Language')}</div>
+                      <div className="nav-dropdown-item-desc">{t('nav.change_language', 'Change interface language')}</div>
+                    </div>
+                  </div>
+                  <div style={{ position: 'relative', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+                    <select
+                      value={i18n.language ? i18n.language.split('-')[0] : 'en'}
+                      onChange={(e) => changeApplicationLanguage(e.target.value)}
+                      style={{
+                        appearance: 'none',
+                        background: '#f8fafc',
+                        border: '1px solid #cbd5e1',
+                        borderRadius: '6px',
+                        padding: '4px 22px 4px 8px',
+                        fontSize: '0.78rem',
+                        fontWeight: 600,
+                        color: 'var(--foreground)',
+                        cursor: 'pointer',
+                        outline: 'none',
+                        fontFamily: 'inherit',
+                        transition: 'border-color 0.2s'
+                      }}
+                      onFocus={(e) => { e.target.style.borderColor = 'var(--primary)'; }}
+                      onBlur={(e) => { e.target.style.borderColor = '#cbd5e1'; }}
+                      title="Select Language"
+                    >
+                      {LANGUAGES.map(lang => (
+                        <option key={lang.code} value={lang.code}>
+                          {lang.native} {lang.native !== lang.label ? `(${lang.label})` : ''}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown
+                      size={12}
+                      style={{
+                        position: 'absolute',
+                        right: '6px',
+                        pointerEvents: 'none',
+                        color: '#64748b'
+                      }}
+                    />
+                  </div>
+                </div>
+
                 <div style={{ height: '1px', background: 'var(--borderLight)', margin: '4px 0' }} />
                 <button
                   type="button"
@@ -964,7 +1028,7 @@ export default function Navbar({
                   style={{ color: '#ef4444' }}
                 >
                   <LogOut size={15} strokeWidth={2} color="#ef4444" />
-                  <div>Sign Out</div>
+                  <div>{t('nav.sign_out', 'Sign Out')}</div>
                 </button>
               </div>
             )}

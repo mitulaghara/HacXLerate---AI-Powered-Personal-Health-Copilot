@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Globe } from 'lucide-react';
 import styled from 'styled-components';
+import { LANGUAGES, changeApplicationLanguage } from '../utils/languageHelper';
 
 const LangWrapper = styled.div`
   position: relative;
@@ -18,7 +19,7 @@ const Select = styled.select`
   border-radius: 6px;
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--text-main);
+  color: var(--text-main, #0f172a);
   cursor: pointer;
   outline: none;
   transition: all 0.2s;
@@ -42,22 +43,22 @@ const IconWrapper = styled.div`
 
 export default function LanguageSelector() {
   const { i18n } = useTranslation();
+  const currentLang = (i18n.language || 'en').split('-')[0];
 
-  const changeLanguage = (e) => {
-    i18n.changeLanguage(e.target.value);
+  const handleLanguageChange = (e) => {
+    const selected = e.target.value;
+    changeApplicationLanguage(selected);
   };
 
   return (
     <LangWrapper>
       <Globe size={16} color="#10b981" />
-      <Select value={i18n.language} onChange={changeLanguage}>
-        <option value="en">English</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="gu">ગુજરાતી (Gujarati)</option>
-        <option value="mr">मराठी (Marathi)</option>
-        <option value="ta">தமிழ் (Tamil)</option>
-        <option value="te">తెలుగు (Telugu)</option>
-        <option value="bn">বাংলা (Bengali)</option>
+      <Select value={currentLang} onChange={handleLanguageChange}>
+        {LANGUAGES.map(lang => (
+          <option key={lang.code} value={lang.code}>
+            {lang.native} {lang.native !== lang.label ? `(${lang.label})` : ''}
+          </option>
+        ))}
       </Select>
       <IconWrapper>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

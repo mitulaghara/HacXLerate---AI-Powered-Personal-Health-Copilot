@@ -19,10 +19,67 @@
   <!-- Leaflet Map Stylesheet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <style>
+    /* Clean up Google Translate DOM injections & banners */
+    .goog-te-banner-frame.skiptranslate,
+    .goog-te-banner-frame,
+    #goog-gt-tt,
+    .goog-te-balloon-frame {
+      display: none !important;
+    }
+    body {
+      top: 0px !important;
+    }
+    .goog-text-highlight {
+      background: none !important;
+      box-shadow: none !important;
+    }
+    #google_translate_element {
+      display: none !important;
+    }
+    .skiptranslate:not(.goog-te-combo) {
+      display: none !important;
+    }
+  </style>
+
+  <script>
+    // Safeguard React DOM reconciliation against external translation wrappers
+    if (typeof Node === 'function' && Node.prototype) {
+      const origRemoveChild = Node.prototype.removeChild;
+      Node.prototype.removeChild = function (child) {
+        if (child.parentNode !== this) {
+          return child;
+        }
+        return origRemoveChild.apply(this, arguments);
+      };
+
+      const origInsertBefore = Node.prototype.insertBefore;
+      Node.prototype.insertBefore = function (newNode, refNode) {
+        if (refNode && refNode.parentNode !== this) {
+          return newNode;
+        }
+        return origInsertBefore.apply(this, arguments);
+      };
+    }
+  </script>
 </head>
 
 <body>
+  <div id="google_translate_element" style="display:none;"></div>
   <div id="root"></div>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,gu,mr,ta,te,bn',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

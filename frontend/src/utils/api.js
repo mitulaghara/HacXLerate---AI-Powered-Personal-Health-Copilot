@@ -2,7 +2,7 @@
  * API client with robust endpoints connected to MongoDB Atlas.
  */
 
-export const API_BASE = '/api';
+export const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 
 const getHeaders = () => {
   const token = localStorage.getItem('gramin_arogya_token');

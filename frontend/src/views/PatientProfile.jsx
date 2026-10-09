@@ -453,6 +453,25 @@ export default function PatientProfile({
     }, 60);
   };
 
+  const handleMockABHA = async () => {
+    const abhaId = window.prompt("Enter your Mock ABHA ID (Ayushman Bharat Health Account) to link health records:", "91-1234-5678-9012");
+    if (abhaId) {
+       try {
+           const res = await api.updateMyPatientProfile({ abhaId: abhaId.trim() });
+           if (res.success) {
+               if (res.patient) setPatientData(res.patient);
+               setSuccessMsg('Mock ABHA ID linked successfully! Your timeline is now ABDM/FHIR-ready. ✅');
+               confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
+               setTimeout(() => setSuccessMsg(''), 5000);
+           } else {
+               setError(res.message || 'Failed to link ABHA ID');
+           }
+       } catch (err) {
+           setError('Network error. Failed to link ABHA ID.');
+       }
+    }
+  };
+
   const handleGpsDetect = async () => {
     setGpsDetecting(true);
     try {
@@ -883,11 +902,19 @@ export default function PatientProfile({
                 }}>
                   Registered Patient
                 </span>
-                {patientData?.abhaId && (
+                {patientData?.abhaId ? (
                   <span style={{ fontSize: '0.75rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px', color: '#059669' }}>
                     <Shield size={14} color="#10b981" />
                     ABHA Verified
                   </span>
+                ) : (
+                  <button type="button" onClick={handleMockABHA} style={{ 
+                    fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', 
+                    color: '#ffffff', background: '#8B5CF6', padding: '4px 10px', borderRadius: '20px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' 
+                  }}>
+                    <Shield size={12} color="#ffffff" />
+                    Link ABHA ID
+                  </button>
                 )}
               </div>
               

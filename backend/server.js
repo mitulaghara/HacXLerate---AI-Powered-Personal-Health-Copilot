@@ -86,3 +86,5 @@ startServer();
 
 module.exports = app;
 
+
+// Trigger nodemon restart

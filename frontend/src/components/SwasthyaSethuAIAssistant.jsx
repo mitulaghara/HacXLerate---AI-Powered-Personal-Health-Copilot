@@ -5,7 +5,7 @@ import { VoiceNote } from './VoiceNote';
 
 const ChatContainer = styled.div`
   position: fixed;
-  bottom: 24px;
+  bottom: 90px;
   right: 24px;
   z-index: 1000;
   display: flex;
@@ -332,6 +332,7 @@ const SwasthyaSethuAIAssistant = () => {
     if (mediaRecorderRef.current && isRecording) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
+      setShowVoiceNote(false);
     }
   };
 
@@ -408,7 +409,7 @@ const SwasthyaSethuAIAssistant = () => {
         <ChatWindow>
           <ChatHeader>
             <HeaderTitle>
-              <MessageSquare size={20} />
+              <img src="/chatbot-avatar.png" alt="AI" style={{ width: '26px', height: '26px', imageRendering: 'pixelated' }} />
               Swasthya Sethu AI
             </HeaderTitle>
             <HeaderActions>
@@ -513,9 +514,42 @@ const SwasthyaSethuAIAssistant = () => {
       )}
 
       {!isOpen && (
-        <ChatButton onClick={() => setIsOpen(true)}>
-          <MessageSquare size={28} />
-        </ChatButton>
+        <button 
+          onClick={() => setIsOpen(true)}
+          style={{
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            padding: 0,
+            width: '80px',
+            height: '80px',
+            position: 'relative',
+            transition: 'transform 0.2s cubic-bezier(0.3, 1.5, 0.4, 1)',
+            filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.25))'
+          }}
+          onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15) translateY(-4px)'}
+          onMouseLeave={e => e.currentTarget.style.transform = 'scale(1) translateY(0)'}
+        >
+          <img src="/chatbot-avatar.png" alt="Open AI Assistant" style={{ width: '100%', height: '100%', objectFit: 'contain', imageRendering: 'pixelated' }} />
+          <div style={{
+            position: 'absolute',
+            bottom: '-10px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            background: '#ffffff',
+            color: '#10b981',
+            padding: '4px 10px',
+            borderRadius: '12px',
+            fontSize: '0.75rem',
+            fontWeight: 'bold',
+            letterSpacing: '0.02em',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+            border: '2px solid #10b981',
+            whiteSpace: 'nowrap'
+          }}>
+            AI Chatbot
+          </div>
+        </button>
       )}
     </ChatContainer>
   );

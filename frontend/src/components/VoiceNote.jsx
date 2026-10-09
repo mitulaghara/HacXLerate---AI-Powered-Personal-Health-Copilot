@@ -302,25 +302,14 @@ export function VoiceNote({
           "--ov": (1 + (clamp(bounce, 0, 100) / 100) * 0.7).toFixed(3),
           "--pull": pull.toFixed(3),
         }}
-        onPointerDown={(e) => {
-          if (ph.current !== "idle") return;
-          try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* a scripted pointer */ }
-          x0.current = e.clientX;
-          begin();
+        onClick={(e) => {
+          if (ph.current === "idle") {
+            begin();
+          } else if (ph.current === "rec") {
+            // Tap again to stop and send
+            end(false);
+          }
         }}
-        onPointerMove={(e) => {
-          if (ph.current !== "rec") return;
-          const p = clamp((x0.current - e.clientX) / CANCEL, 0, 1);
-          /* all the way arms it — a tick as it catches — and
-             sliding back disarms; letting go is what decides */
-          pullRef.current = p;
-          setPull(p);
-        }}
-        onPointerUp={(e) => {
-          try { e.currentTarget.releasePointerCapture(e.pointerId); } catch { /* never captured */ }
-          end(pullRef.current >= 1);
-        }}
-        onPointerCancel={() => end(false)}
         onKeyDown={(e) => {
           if ((e.key === " " || e.key === "Enter") && !e.repeat && ph.current === "idle") {
             e.preventDefault();
@@ -330,20 +319,18 @@ export function VoiceNote({
           }
         }}
         onKeyUp={(e) => {
-          /* only while recording: the play and discard buttons
-             inside act on keyup, and this would swallow it */
           if ((e.key === " " || e.key === "Enter") && ph.current === "rec") {
             e.preventDefault();
             end(false);
           }
         }}
-        onBlur={() => { if (ph.current === "rec") end(false); }}
+        onBlur={() => { if (ph.current === "rec") end(true); }}
         onContextMenu={(e) => e.preventDefault()}
       >
         {phase === "idle" && (
           <span key="idle" className="vn-in vn-idle">
             <MicMark />
-            Hold to record
+            Tap to record
           </span>
         )}
 
@@ -402,11 +389,9 @@ export function VoiceNote({
       <span
         className="vn-hint"
         data-on={phase === "rec" || undefined}
-        data-armed={(phase === "rec" && armed) || undefined}
-        style={{ "--pull": pull.toFixed(3) }}
         aria-hidden="true"
       >
-        {phase === "rec" && armed ? "Release to cancel" : "‹ Slide to cancel"}
+        {phase === "rec" && "Tap again to finish"}
       </span>
     </div>
   );

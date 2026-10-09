@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
+import SwasthyaSethuAIAssistant from './components/SwasthyaSethuAIAssistant';
 import PublicLayout from './pages/PublicLayout';
 import Home from './pages/Home';
 import Services from './pages/Services';
@@ -432,6 +433,7 @@ export default function App() {
         `}</style>
         <SOSModal isOpen={isSOSOpen} onClose={() => setIsSOSOpen(false)} />
         <BloodFinderModal isOpen={isBloodOpen} onClose={() => setIsBloodOpen(false)} />
+        <SwasthyaSethuAIAssistant />
       </>
     );
   }
@@ -675,6 +677,8 @@ export default function App() {
           108 SOS
         </button>
       </div>
+
+      <SwasthyaSethuAIAssistant />
 
       <SOSModal
         isOpen={isSOSOpen}

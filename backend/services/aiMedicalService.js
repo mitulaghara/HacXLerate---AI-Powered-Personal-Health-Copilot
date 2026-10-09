@@ -166,7 +166,8 @@ STRICT SAFETY RULES:
 
 SCHEMA:
 {
-  "summary": "Brief 2-3 sentence neutral clinical overview of findings and abnormal markers",
+  "summary": "Provide a plain language, easy-to-understand summary of the health records. Crucially, explain what any abnormal lab values mean in a way that a normal patient can understand without causing panic. Keep the wording safe and medically correct. If handwritten or bilingual, extract the meaning clearly.",
+  "summaryHindi": "Provide the exact same plain language summary translated into Hindi (हिंदी).",
   "general": {
     "documentType": "e.g. Complete Blood Count Report",
     "documentDate": "YYYY-MM-DD or as written",

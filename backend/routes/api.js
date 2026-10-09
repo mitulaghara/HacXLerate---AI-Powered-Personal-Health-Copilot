@@ -599,5 +599,7 @@ router.post('/medical-documents/:id/re-analyze', authenticateJWT, medicalDocumen
 router.post('/medical-documents/configure-ai', authenticateJWT, medicalDocumentController.configureAiKey);
 router.delete('/medical-documents/:id', authenticateJWT, medicalDocumentController.deleteMedicalDocument);
 
+router.use('/chatbot', require('./chatbotRoutes'));
+
 module.exports = router;
 

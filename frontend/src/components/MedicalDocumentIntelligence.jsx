@@ -54,6 +54,7 @@ export default function MedicalDocumentIntelligence({ onRecordSynchronized, pati
   const [verifyingDoc, setVerifyingDoc] = useState(false);
   const [retryingDocId, setRetryingDocId] = useState(null);
   const [activeTab, setActiveTab] = useState('structured'); // 'structured' | 'preview' | 'rawText' | 'audit'
+  const [summaryLanguage, setSummaryLanguage] = useState('en');
 
 
 
@@ -62,8 +63,13 @@ export default function MedicalDocumentIntelligence({ onRecordSynchronized, pati
     return name.replace(/[\u202f\u00a0]/g, ' ');
   };
 
-  const getSynthesizedClinicalSummary = (doc, data) => {
-    const stored = doc?.aiExtraction?.summary;
+  const getSynthesizedClinicalSummary = (doc, data, lang = 'en') => {
+    if (lang === 'hi') {
+      const hiSummary = data?.summaryHindi || doc?.extractedData?.summaryHindi || doc?.aiExtraction?.extractedData?.summaryHindi;
+      if (hiSummary) return hiSummary;
+      return 'हिंदी सारांश उपलब्ध नहीं है (Hindi summary not available).';
+    }
+    const stored = data?.summary || doc?.extractedData?.summary || doc?.aiExtraction?.summary;
     if (stored && !stored.includes('not configured') && !stored.includes('unavailable') && !stored.includes('UNAVAILABLE')) {
       return stored;
     }
@@ -1081,7 +1087,7 @@ export default function MedicalDocumentIntelligence({ onRecordSynchronized, pati
                           <Sparkles size={15} />
                         </div>
                         <span style={{ fontSize: '0.86rem', fontWeight: 800, color: '#166534', textTransform: 'uppercase', letterSpacing: '0.02em' }}>
-                          AI Clinical Summary & Insights
+                          AI Health Summary
                         </span>
                         <span style={{
                           background: '#dcfce7',
@@ -1097,10 +1103,28 @@ export default function MedicalDocumentIntelligence({ onRecordSynchronized, pati
                             : 'Automated Clinical Intelligence'}
                         </span>
                       </div>
+                      <div>
+                        <button
+                          type="button"
+                          onClick={() => setSummaryLanguage(summaryLanguage === 'en' ? 'hi' : 'en')}
+                          style={{
+                            padding: '4px 10px',
+                            background: '#ffffff',
+                            border: '1px solid #10b981',
+                            borderRadius: '6px',
+                            color: '#047857',
+                            fontSize: '0.75rem',
+                            fontWeight: 700,
+                            cursor: 'pointer'
+                          }}
+                        >
+                          {summaryLanguage === 'en' ? 'Translate to Hindi' : 'View in English'}
+                        </button>
+                      </div>
                     </div>
 
                     <p style={{ margin: 0, fontSize: '0.88rem', color: '#1e293b', lineHeight: 1.6, fontWeight: 500 }}>
-                      {getSynthesizedClinicalSummary(activeDoc, editableData)}
+                      {getSynthesizedClinicalSummary(activeDoc, editableData, summaryLanguage)}
                     </p>
                   </div>
 

@@ -603,3 +603,6 @@ router.use('/chatbot', require('./chatbotRoutes'));
 
 module.exports = router;
 
+
+// Localization Route
+router.use('/translate', require('./translateRoutes'));

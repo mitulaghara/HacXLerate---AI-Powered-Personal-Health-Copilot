@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { Phone, Lock, Menu, X } from 'lucide-react';
+import LanguageSelector from '../components/LanguageSelector';
 
 import PublicFooter from '../components/PublicFooter';
 
@@ -70,6 +71,9 @@ export default function PublicLayout({
 
             {/* ACTIONS */}
             <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexShrink: 0 }}>
+              <div className="mobile-hidden">
+                <LanguageSelector />
+              </div>
               <button
                 className="np-btn mobile-hidden"
                 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.625rem 1.25rem', background: '#FEF2F2', color: 'var(--emergency)', border: '1px solid #FCA5A5', fontFamily: 'var(--font-mono)', fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s' }}
@@ -129,6 +133,9 @@ export default function PublicLayout({
               </Link>
             ))}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '1rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.5rem' }}>
+                <LanguageSelector />
+              </div>
               <button
                 className="np-btn"
                 style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.75rem', background: '#FEF2F2', color: 'var(--emergency)', border: '1px solid #FCA5A5', fontFamily: 'var(--font-mono)', fontSize: '0.875rem', fontWeight: 600 }}

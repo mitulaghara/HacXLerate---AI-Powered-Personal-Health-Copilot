@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Mic, MicOff, Send, X, MessageSquare, Volume2, VolumeX, RefreshCcw, Loader2, Copy, Keyboard } from 'lucide-react';
 import styled from 'styled-components';
 import { VoiceNote } from './VoiceNote';
@@ -229,18 +230,35 @@ const Chip = styled.button`
 `;
 
 const SwasthyaSethuAIAssistant = () => {
+  const { t, i18n } = useTranslation();
+  const languageMap = {
+    'en': 'English',
+    'hi': 'Hindi',
+    'gu': 'Gujarati',
+    'mr': 'Marathi',
+    'ta': 'Tamil',
+    'te': 'Telugu',
+    'bn': 'Bengali'
+  };
+  const currentLangStr = languageMap[i18n.language?.substring(0,2)] || 'English';
+
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([{
     role: 'model',
-    text: 'Hello! I am your Swasthya Sethu AI Assistant. How can I help you today? (नमस्ते! હું તમારી કઈ રીતે મદદ કરી શકું?)'
+    text: t('chatbot.welcome', 'Hello! I am your Swasthya Sethu AI Assistant. How can I help you today?')
   }]);
   const [input, setInput] = useState('');
-  const [language, setLanguage] = useState('English');
+  const [language, setLanguage] = useState(currentLangStr);
   const [isRecording, setIsRecording] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [speakingIndex, setSpeakingIndex] = useState(null);
   const [showVoiceNote, setShowVoiceNote] = useState(false);
   
+  // Sync internal state with i18n
+  useEffect(() => {
+    setLanguage(languageMap[i18n.language?.substring(0,2)] || 'English');
+  }, [i18n.language]);
+
   const messagesEndRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);

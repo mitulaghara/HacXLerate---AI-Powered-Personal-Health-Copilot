@@ -1,11 +1,11 @@
-const { GoogleGenAI } = require('@google/genai');
+const Groq = require('groq-sdk');
 const fs = require('fs');
 
 const getAIClient = () => {
-  if (!process.env.GEMINI_API_KEY) {
-    throw new Error("GEMINI_API_KEY environment variable is missing");
+  if (!process.env.GROQ_API_KEY) {
+    throw new Error("GROQ_API_KEY environment variable is missing");
   }
-  return new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+  return new Groq({ apiKey: process.env.GROQ_API_KEY });
 };
 
 const SYSTEM_PROMPT = `You are Swasthya Sethu AI Assistant, a healthcare application assistant for GraminArogya.
@@ -27,74 +27,102 @@ exports.chatMessage = async (req, res) => {
       return res.status(400).json({ error: 'Message is required' });
     }
 
-    const ai = getAIClient();
-    const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+    const groq = getAIClient();
     
-    // Format history for Gemini
-    const contents = history ? history.map(msg => ({
-      role: msg.role === 'user' ? 'user' : 'model',
-      parts: [{ text: msg.parts[0].text }]
-    })) : [];
+    // Format history for Groq
+    const messages = [{ role: 'system', content: SYSTEM_PROMPT }];
+    
+    if (history) {
+      history.forEach(msg => {
+        messages.push({
+          role: msg.role === 'user' ? 'user' : 'assistant',
+          content: msg.parts[0].text
+        });
+      });
+    }
     
     // Add current message
-    contents.push({
+    messages.push({
       role: 'user',
-      parts: [{ text: `(Language: ${language || 'auto'}) ${message}` }]
+      content: `(Language preference: ${language || 'auto'})\n\nUser: ${message}`
     });
 
-    const response = await ai.models.generateContent({
-      model: model,
-      contents: contents,
-      config: {
-        systemInstruction: SYSTEM_PROMPT,
-        temperature: 0.3
-      }
+    const response = await groq.chat.completions.create({
+      model: 'openai/gpt-oss-120b',
+      messages: messages,
+      temperature: 0.3
     });
 
-    res.json({ text: response.text });
+    res.json({ text: response.choices[0].message.content });
   } catch (error) {
-    console.error('Gemini API Error:', error);
+    console.error('Groq Chat API Error:', error);
     res.status(500).json({ error: 'Failed to process chat message', details: error.message });
   }
 };
 
 exports.voiceMessage = async (req, res) => {
+  let finalPath = null;
   try {
     if (!req.file) {
       return res.status(400).json({ error: 'Audio file is required' });
     }
 
-    const { language } = req.body;
-    const ai = getAIClient();
-    const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+    const { language, history } = req.body;
+    const groq = getAIClient();
 
-    const fileBytes = fs.readFileSync(req.file.path);
-    const audioBase64 = fileBytes.toString('base64');
+    // Groq requires an extension on the filename to detect the MIME type.
+    // Multer saves without an extension by default.
+    finalPath = req.file.path + '.webm';
+    fs.renameSync(req.file.path, finalPath);
 
-    const contents = [{
-      role: 'user',
-      parts: [
-        { text: `Understand this audio message and answer appropriately in ${language || 'the spoken language'}.` },
-        { inlineData: { mimeType: req.file.mimetype || 'audio/webm', data: audioBase64 } }
-      ]
-    }];
+    // 1. Transcribe the audio using Whisper
+    const transcription = await groq.audio.transcriptions.create({
+      file: fs.createReadStream(finalPath),
+      model: 'whisper-large-v3-turbo',
+      response_format: 'json'
+    });
 
-    const response = await ai.models.generateContent({
-      model: model,
-      contents: contents,
-      config: {
-        systemInstruction: SYSTEM_PROMPT,
-        temperature: 0.3
+    const transcribedText = transcription.text;
+    console.log('Transcribed Audio:', transcribedText);
+
+    // 2. Generate the AI reply using Llama 3
+    const messages = [{ role: 'system', content: SYSTEM_PROMPT }];
+    
+    // We optionally pass history if it exists
+    if (history) {
+      try {
+         const parsedHistory = typeof history === 'string' ? JSON.parse(history) : history;
+         parsedHistory.forEach(msg => {
+           messages.push({
+             role: msg.role === 'user' ? 'user' : 'assistant',
+             content: msg.parts[0].text
+           });
+         });
+      } catch (e) {
+         console.warn("Could not parse history in voice request");
       }
+    }
+    
+    messages.push({
+      role: 'user',
+      content: `(The user sent a voice message. This is the exact transcription. Reply naturally in ${language || 'their spoken language'}.)\n\nTranscription: ${transcribedText}`
+    });
+
+    const chatResponse = await groq.chat.completions.create({
+      model: 'openai/gpt-oss-120b',
+      messages: messages,
+      temperature: 0.3
     });
 
     // Cleanup temp file
-    fs.unlinkSync(req.file.path);
+    if (fs.existsSync(finalPath)) fs.unlinkSync(finalPath);
 
-    res.json({ text: response.text });
+    res.json({ text: chatResponse.choices[0].message.content });
   } catch (error) {
-    console.error('Gemini Voice API Error:', error);
-    if (req.file && fs.existsSync(req.file.path)) {
+    console.error('Groq Voice API Error:', error);
+    if (finalPath && fs.existsSync(finalPath)) {
+      fs.unlinkSync(finalPath);
+    } else if (req.file && fs.existsSync(req.file.path)) {
       fs.unlinkSync(req.file.path);
     }
     res.status(500).json({ error: 'Failed to process voice message', details: error.message });

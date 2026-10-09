@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
 import {
   HeartPulse,
   LogOut,
@@ -37,6 +39,7 @@ export default function Navbar({
   currentUser,
   onLogout
 }) {
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [pendingRemindersCount, setPendingRemindersCount] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -522,6 +525,12 @@ export default function Navbar({
 
         {/* Right Header Actions: 108 SOS & Hamburger Button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          
+          {/* Add language selector to mobile */}
+          <div className="mobile-lang-wrapper" style={{ transform: 'scale(0.85)' }}>
+            <LanguageSelector />
+          </div>
+
           <button
             type="button"
             onClick={handleSOSAction}
@@ -842,6 +851,8 @@ export default function Navbar({
 
         {/* Right Actions Group */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+          
+          <LanguageSelector />
           
           {/* User Profile Chip with Dropdown */}
           <div className="nav-dropdown-wrapper">
@@ -1449,8 +1460,16 @@ export default function Navbar({
           </div>
         </div>
       )}
+
+      {i18n.language && !i18n.language.startsWith('en') && (
+        <div style={{ background: '#FEF2F2', borderBottom: '1px solid #FCA5A5', color: '#991B1B', padding: '6px 14px', fontSize: '0.75rem', textAlign: 'center', fontWeight: '500' }}>
+          <AlertTriangle size={14} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '4px' }} />
+          Machine-translated content. Medical terms may be inaccurate. Do not use for final medical diagnosis.
+        </div>
+      )}
     </header>
   );
 }
+
 
 

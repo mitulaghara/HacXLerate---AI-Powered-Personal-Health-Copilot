@@ -1,0 +1,19 @@
+{
+  "nav": {
+    "rural_health": "RURAL HEALTH",
+    "services": "Services",
+    "find_care": "Find Care",
+    "network": "Network",
+    "health_articles": "Health Articles",
+    "contact": "Contact",
+    "emergency": "Emergency",
+    "sign_in": "Sign In",
+    "language": "Language"
+  },
+  "disclaimer": {
+    "machine_translation": "Note: Medical information has been translated using an AI service. Please consult a doctor for official medical advice."
+  },
+  "errors": {
+    "translation_failed": "Translation service is currently unavailable. Displaying in English."
+  }
+}

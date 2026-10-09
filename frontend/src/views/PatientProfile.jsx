@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { User, Phone, Mail, MapPin, Calendar, Heart, Shield, Activity, Edit3, Save, X, Loader, AlertCircle, CheckCircle2, Clock, Droplets, Stethoscope, FileText, LocateFixed, ChevronDown, ChevronUp, Thermometer, Wind, Zap, Plus, Check, Bell, QrCode, Download, Printer, Maximize2, Minimize2, Pill, Camera, Trash2 } from 'lucide-react';
+import { User, Phone, Mail, MapPin, Calendar, Heart, Shield, Activity, Edit3, Save, X, Loader, AlertCircle, CheckCircle2, Clock, Droplets, Stethoscope, FileText, LocateFixed, ChevronDown, ChevronUp, Thermometer, Wind, Zap, Plus, Check, Bell, QrCode, Download, Printer, Maximize2, Minimize2, Pill, Camera, Trash2, Microscope } from 'lucide-react';
 import { QRCodeSVG, QRCodeCanvas } from 'qrcode.react';
 import confetti from 'canvas-confetti';
 import { api, API_BASE } from '../utils/api';
 import { getLivePosition, reverseGeocode } from '../utils/geolocation';
 import HeartbeatLoader from '../components/HeartbeatLoader';
+import MedicalDocumentIntelligence from '../components/MedicalDocumentIntelligence';
 function computeAge(dob) {
   if (!dob) return null;
   const birth = new Date(dob);
@@ -948,6 +949,20 @@ export default function PatientProfile({
                   title="Click to jump to ASHA Field Visits"
                 >
                   <Activity size={14} color="#0d9488" /> {fieldReports.length} ASHA Visit{fieldReports.length !== 1 ? 's' : ''}
+                </span>
+                <span 
+                  onClick={() => {
+                    const el = document.getElementById('sec-medical-ocr');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  style={{ 
+                    fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px', 
+                    fontWeight: 700, color: '#059669', cursor: 'pointer',
+                    background: '#ecfdf5', padding: '3px 10px', borderRadius: '12px', border: '1.5px solid #a7f3d0'
+                  }}
+                  title="Click to jump to Medical Record Intelligence & OCR"
+                >
+                  <Microscope size={14} color="#059669" /> Medical Records & OCR
                 </span>
               </div>
             </div>
@@ -2273,6 +2288,12 @@ export default function PatientProfile({
             </div>
           </div>}
       </SectionCard>
+
+      {/* Medical Record Intelligence & AI-OCR Module */}
+      <MedicalDocumentIntelligence 
+        onRecordSynchronized={loadProfile} 
+        patientId={patientData?.id} 
+      />
 
       {/* Medical History */}
       <SectionCard 

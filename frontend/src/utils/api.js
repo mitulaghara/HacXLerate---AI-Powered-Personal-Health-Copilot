@@ -915,9 +915,99 @@ export const api = {
   getUsers: async () => {
     const res = await fetch(`${API_BASE}/auth/users`, { headers: getHeaders() });
     return res.json();
+  },
+
+  // ─── MEDICAL RECORD INTELLIGENCE & OCR ────────────────────────────────────
+  uploadMedicalDocument: async (formData) => {
+    const token = localStorage.getItem('gramin_arogya_token');
+    const headers = {};
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    const user = localStorage.getItem('gramin_arogya_user');
+    if (user) {
+      try {
+        const parsed = JSON.parse(user);
+        if (parsed && (parsed.id || parsed._id)) headers['x-user-id'] = parsed.id || parsed._id;
+      } catch {}
+    }
+    const res = await fetch(`${API_BASE}/medical-documents/upload`, {
+      method: 'POST',
+      headers,
+      body: formData
+    });
+    return safeJson(res);
+  },
+
+  getMyMedicalDocuments: async (params = {}) => {
+    const searchParams = new URLSearchParams();
+    if (params.category && params.category !== 'all') searchParams.append('category', params.category);
+    if (params.search) searchParams.append('search', params.search);
+    const qs = searchParams.toString() ? `?${searchParams.toString()}` : '';
+    const res = await fetch(`${API_BASE}/medical-documents${qs}`, { headers: getHeaders() });
+    return safeJson(res);
+  },
+
+  getMedicalDocumentById: async (id) => {
+    const res = await fetch(`${API_BASE}/medical-documents/${id}`, { headers: getHeaders() });
+    return safeJson(res);
+  },
+
+  updateMedicalDocumentCorrections: async (id, correctedData, auditNote = '') => {
+    const res = await fetch(`${API_BASE}/medical-documents/${id}/corrections`, {
+      method: 'PATCH',
+      headers: getHeaders(),
+      body: JSON.stringify({ correctedData, auditNote })
+    });
+    return safeJson(res);
+  },
+
+  verifyMedicalDocument: async (id) => {
+    const res = await fetch(`${API_BASE}/medical-documents/${id}/verify`, {
+      method: 'POST',
+      headers: getHeaders()
+    });
+    return safeJson(res);
+  },
+
+  retryMedicalDocumentProcessing: async (id) => {
+    const res = await fetch(`${API_BASE}/medical-documents/${id}/retry`, {
+      method: 'POST',
+      headers: getHeaders()
+    });
+    return safeJson(res);
+  },
+
+  deleteMedicalDocument: async (id) => {
+    const res = await fetch(`${API_BASE}/medical-documents/${id}`, {
+      method: 'DELETE',
+      headers: getHeaders()
+    });
+    return safeJson(res);
+  },
+
+  getMedicalDocumentFileUrl: (id) => {
+    const token = localStorage.getItem('gramin_arogya_token');
+    return `${API_BASE}/medical-documents/${id}/file${token ? `?token=${encodeURIComponent(token)}` : ''}`;
+  },
+
+  configureAiKey: async ({ provider, apiKey, model }) => {
+    const res = await fetch(`${API_BASE}/medical-documents/configure-ai`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ provider, apiKey, model })
+    });
+    return safeJson(res);
+  },
+
+  reAnalyzeDocument: async (id) => {
+    const res = await fetch(`${API_BASE}/medical-documents/${id}/re-analyze`, {
+      method: 'POST',
+      headers: getHeaders()
+    });
+    return safeJson(res);
   }
 };
 
 export default api;
+
 
 

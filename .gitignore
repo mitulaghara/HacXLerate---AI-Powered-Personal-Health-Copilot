@@ -7,3 +7,6 @@ dist/
 frontend/.env
 .vercel
 .env*
+*.traineddata
+uploads/
+backend/uploads/

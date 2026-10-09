@@ -16,6 +16,7 @@ const diseaseController = require('../controllers/diseaseController');
 const prescriptionController = require('../controllers/prescriptionController');
 const stockController = require('../controllers/stockController');
 const adminDataController = require('../controllers/adminDataController');
+const medicalDocumentController = require('../controllers/medicalDocumentController');
 const { authenticateJWT, authorizeRole } = require('../middleware/authMiddleware');
 
 // 1. Authentication & User Management
@@ -585,6 +586,18 @@ router.patch('/appointments/:id/status', authenticateJWT, async (req, res) => {
     return res.status(500).json({ success: false, message: 'Failed to update appointment' });
   }
 });
+
+// 18. Medical Record Intelligence & OCR Endpoints
+router.post('/medical-documents/upload', authenticateJWT, medicalDocumentController.uploadMedicalDocument);
+router.get('/medical-documents', authenticateJWT, medicalDocumentController.getMyMedicalDocuments);
+router.get('/medical-documents/:id', authenticateJWT, medicalDocumentController.getMedicalDocumentById);
+router.get('/medical-documents/:id/file', authenticateJWT, medicalDocumentController.streamMedicalDocumentFile);
+router.patch('/medical-documents/:id/corrections', authenticateJWT, medicalDocumentController.updateMedicalDocumentCorrections);
+router.post('/medical-documents/:id/verify', authenticateJWT, medicalDocumentController.verifyMedicalDocument);
+router.post('/medical-documents/:id/retry', authenticateJWT, medicalDocumentController.retryMedicalDocumentProcessing);
+router.post('/medical-documents/:id/re-analyze', authenticateJWT, medicalDocumentController.reAnalyzeDocument);
+router.post('/medical-documents/configure-ai', authenticateJWT, medicalDocumentController.configureAiKey);
+router.delete('/medical-documents/:id', authenticateJWT, medicalDocumentController.deleteMedicalDocument);
 
 module.exports = router;
 

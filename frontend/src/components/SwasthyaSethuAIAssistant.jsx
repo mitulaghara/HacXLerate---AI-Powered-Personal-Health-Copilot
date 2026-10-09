@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Mic, MicOff, Send, X, MessageSquare, Volume2, VolumeX, RefreshCcw, Loader2, Copy, Keyboard } from 'lucide-react';
 import styled from 'styled-components';
 import { VoiceNote } from './VoiceNote';
+import { speakAssistantMessage, stopSpeech } from '../utils/speechHelper';
 
 const ChatContainer = styled.div`
   position: fixed;
@@ -245,7 +246,7 @@ const SwasthyaSethuAIAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([{
     role: 'model',
-    text: t('chatbot.welcome', 'Hello! I am your Swasthya Sethu AI Assistant. How can I help you today?')
+    text: t('chatbot.welcome', 'Hello! I am your Swasthya Sethu AI Health Assistant. Please ask me any health, symptom, medication, or wellness questions.')
   }]);
   const [input, setInput] = useState('');
   const [language, setLanguage] = useState(currentLangStr);
@@ -259,15 +260,22 @@ const SwasthyaSethuAIAssistant = () => {
     setLanguage(languageMap[i18n.language?.substring(0,2)] || 'English');
   }, [i18n.language]);
 
+  // Clean up any ongoing audio playback on unmount
+  useEffect(() => {
+    return () => {
+      stopSpeech();
+    };
+  }, []);
+
   const messagesEndRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
 
   const suggestions = [
-    "How to book an appointment?",
-    "What are the hospital timings?",
-    "Show my health records",
-    "Emergency contact numbers"
+    "What are common symptoms of viral fever?",
+    "First aid guidance for sudden chest pain",
+    "Diet tips for blood pressure & diabetes",
+    "Rural health clinics & 108 ambulance"
   ];
 
   const scrollToBottom = () => {
@@ -387,33 +395,27 @@ const SwasthyaSethuAIAssistant = () => {
   };
 
   const speakText = (text, index) => {
-    if (!('speechSynthesis' in window)) return;
-    
     if (speakingIndex === index) {
-      window.speechSynthesis.cancel();
+      stopSpeech();
       setSpeakingIndex(null);
       return;
     }
 
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    
-    // Try to set language based on selection
-    if (language === 'Hindi') utterance.lang = 'hi-IN';
-    else if (language === 'Gujarati') utterance.lang = 'gu-IN';
-    else utterance.lang = 'en-US';
-
-    utterance.onend = () => setSpeakingIndex(null);
-    window.speechSynthesis.speak(utterance);
-    setSpeakingIndex(index);
+    speakAssistantMessage(
+      text,
+      language,
+      () => setSpeakingIndex(index),
+      () => setSpeakingIndex(null),
+      () => setSpeakingIndex(null)
+    );
   };
 
   const clearChat = () => {
     setMessages([{
       role: 'model',
-      text: 'Hello! I am your Swasthya Sethu AI Assistant. How can I help you today?'
+      text: 'Hello! I am your Swasthya Sethu AI Health Assistant. Please ask me any health, symptom, medication, or wellness questions.'
     }]);
-    window.speechSynthesis.cancel();
+    stopSpeech();
     setSpeakingIndex(null);
   };
 
@@ -434,7 +436,7 @@ const SwasthyaSethuAIAssistant = () => {
               <IconButton onClick={clearChat} title="Clear Chat">
                 <RefreshCcw size={18} />
               </IconButton>
-              <IconButton onClick={() => setIsOpen(false)}>
+              <IconButton onClick={() => { stopSpeech(); setSpeakingIndex(null); setIsOpen(false); }} title="Close Chat">
                 <X size={20} />
               </IconButton>
             </HeaderActions>
@@ -509,7 +511,7 @@ const SwasthyaSethuAIAssistant = () => {
                   value={input}
                   onChange={e => setInput(e.target.value)}
                   onKeyDown={e => e.key === 'Enter' && sendMessage(input)}
-                  placeholder="Type your health question..."
+                  placeholder="Ask any health or medical question..."
                   disabled={isLoading}
                 />
                 {input.trim() ? (

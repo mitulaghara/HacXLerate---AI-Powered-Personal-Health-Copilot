@@ -165,7 +165,7 @@ mission:
         </p>
         <p>
           <a href="https://github.com/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot"><b>💻 Source Code</b></a> &nbsp;•&nbsp;
-          <a href="https://graminarogya.vercel.app/"><b>🌐 Live Platform</b></a>
+          <a href="https://graminarogya-ai.vercel.app/"><b>🌐 Live Platform</b></a>
         </p>
       </div>
     </td>

@@ -7,7 +7,7 @@
 
   <!-- TOP STATUS BADGE HUD -->
   <p align="center">
-    <a href="https://graminarogya.vercel.app">
+    <a href="https://graminarogya-ai.vercel.app">
       <img src="https://img.shields.io/badge/PRODUCTION%20EDGE-ONLINE-00FF88?style=for-the-badge&logo=vercel&logoColor=black" alt="Production Status" />
     </a>
     <a href="https://github.com/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot">
@@ -25,13 +25,13 @@
   </p>
 
   <!-- OFFICIAL PROJECT LOGO -->
-  <a href="https://graminarogya.vercel.app">
+  <a href="https://graminarogya-ai.vercel.app">
     <img src="./assets/logo.png" alt="GraminArogya Official Logo" width="380" />
   </a>
 
   <!-- FUTURISTIC 3D ANIMATED HERO BANNER -->
   <p align="center">
-    <a href="https://graminarogya.vercel.app">
+    <a href="https://graminarogya-ai.vercel.app">
       <img src="./assets/hero-banner.svg" alt="GraminArogya Cyberpunk 3D Banner" width="100%" />
     </a>
   </p>
@@ -43,8 +43,8 @@
 
   <!-- INTERACTIVE ACTION CTA BUTTONS -->
   <p align="center">
-    <a href="https://graminarogya.vercel.app" target="_blank">
-      <img src="https://img.shields.io/badge/🚀%20LAUNCH%20LIVE%20APP-graminarogya.vercel.app-00F5FF?style=for-the-badge&labelColor=050509" alt="Live Demo" />
+    <a href="https://graminarogya-ai.vercel.app" target="_blank">
+      <img src="https://img.shields.io/badge/🚀%20LAUNCH%20LIVE%20APP-graminarogya--ai.vercel.app-00F5FF?style=for-the-badge&labelColor=050509" alt="Live Demo" />
     </a>
     <a href="#-01--evaluator--judge-quick-start-dossier">
       <img src="https://img.shields.io/badge/⚖️%20JUDGE%20TEST%20CREDENTIALS-Instant%20Access-00FF88?style=for-the-badge&labelColor=050509" alt="Judge Credentials" />
@@ -149,12 +149,12 @@
 <table>
   <tr>
     <td width="55%" align="center" style="background:#090a14; border: 1.5px solid #00F5FF; border-radius: 12px; padding: 12px;">
-      <a href="https://graminarogya.vercel.app">
+      <a href="https://graminarogya-ai.vercel.app">
         <img src="./assets/preview-hero.jpg" alt="GraminArogya Portal Preview" width="100%" style="border-radius: 8px;" />
       </a>
       <p align="center" style="margin-top: 8px;">
-        <a href="https://graminarogya.vercel.app">
-          <img src="https://img.shields.io/badge/VISIT%20LIVE%20APP-https%3A%2F%2Fgraminarogya.vercel.app-00F5FF?style=flat-square" alt="Visit Live" />
+        <a href="https://graminarogya-ai.vercel.app">
+          <img src="https://img.shields.io/badge/VISIT%20LIVE%20APP-https%3A%2F%2Fgraminarogya--ai.vercel.app-00F5FF?style=flat-square" alt="Visit Live" />
         </a>
       </p>
     </td>
@@ -489,7 +489,7 @@ npm run dev
 |---|---|---|
 | 🌐 **Frontend Web App** | `http://localhost:3000` | Complete user portal (Citizen, Doctor, ASHA, Admin) |
 | 🔌 **Backend REST API** | `http://localhost:5001/api` | Micro-services, AI Copilot, ABDM, Auth, Routing |
-| 🚀 **Live Production** | `https://graminarogya.vercel.app` | Vercel Global Edge Deployment |
+| 🚀 **Live Production** | `https://graminarogya-ai.vercel.app` | Vercel Global Edge Deployment |
 
 <p align="center">
   <img src="./assets/neon-divider.svg" alt="Cyber Divider" width="100%" />
@@ -781,7 +781,7 @@ HacXLerate-Health-Copilot/
 - [x] **Dual Synchronized Follow-Up Engine:** Real-time polling queue with automated email OTP verification
 - [x] **Zero-Connectivity ASHA Capture:** Browser IndexedDB storage with auto-sync on network restoration
 - [x] **QR Referral Passport:** Encrypted vital signs & medical history serialization for 1-second hospital handover
-- [x] **Cloud Production Edge:** Live deployment on Vercel at `https://graminarogya.vercel.app`
+- [x] **Cloud Production Edge:** Live deployment on Vercel at `https://graminarogya-ai.vercel.app`
 - [x] **Google OAuth 2.0 & Identity Vault:** 1-tap Google Sign-In and 6-digit email OTP credential recovery
 - [ ] **IoT Medical Device Bridge:** Bluetooth LE integration with handheld digital pulse oximeters and BP monitors
 - [ ] **Edge ML Voice Parser:** On-device offline TensorFlow Lite voice parser for tribal regional dialects

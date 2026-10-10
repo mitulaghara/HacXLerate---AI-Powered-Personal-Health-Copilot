@@ -104,7 +104,7 @@
         </tr>
       </table>
       <div style="margin-top:12px; padding:8px 12px; background:#0B132B; border-left:3px solid #00F5FF; border-radius:4px; font-size:12px;">
-        💡 <strong>Quick Sign-In:</strong> Access the portal at <a href="https://graminarogya.vercel.app/signin" style="color:#00F5FF;">/signin</a>. Google OAuth 2.0 Single Sign-On is also enabled for 1-tap evaluation.
+        💡 <strong>Quick Sign-In:</strong> Access the portal at <a href="https://graminarogya-ai.vercel.app/signin" style="color:#00F5FF;">/signin</a>. Google OAuth 2.0 Single Sign-On is also enabled for 1-tap evaluation.
       </div>
     </td>
     <td width="50%" valign="top" style="background:#090a18; border: 1.5px solid #00FF88; border-radius: 12px; padding: 16px; color:#F8FAFC;">

@@ -953,7 +953,7 @@ copies of the Software.
   <tr>
     <!-- MITUL AGHARA -->
     <td width="50%" align="center" style="background:#090a14; border: 1.5px solid #00F5FF; border-radius: 12px; padding: 20px; color: #F8FAFC;">
-      <h3 style="color:#00F5FF; margin:0 0 6px 0;">Mitul Aghara</h3>
+      <h3 style="color:#00F5FF; margin:0 0 6px 0;"><a href="https://linkedin.com/in/mitulaghara" target="_blank" rel="noopener noreferrer" style="color:#00F5FF; text-decoration:none;">Mitul Aghara</a></h3>
       <p style="color:#94A3B8; font-family:'Courier New', monospace; font-size:12px; margin:0 0 14px 0;">
         Full Stack Systems Architect • HacXLerate Finalist
       </p>
@@ -974,7 +974,7 @@ copies of the Software.
     </td>
     <!-- MANTHAN MAKWANA -->
     <td width="50%" align="center" style="background:#090a14; border: 1.5px solid #8B5CF6; border-radius: 12px; padding: 20px; color: #F8FAFC;">
-      <h3 style="color:#C084FC; margin:0 0 6px 0;">Manthan Makwana</h3>
+      <h3 style="color:#C084FC; margin:0 0 6px 0;"><a href="https://github.com/Manthan-Makwana" target="_blank" rel="noopener noreferrer" style="color:#C084FC; text-decoration:none;">Manthan Makwana</a></h3>
       <p style="color:#94A3B8; font-family:'Courier New', monospace; font-size:12px; margin:0 0 14px 0;">
         Team Lead &amp; Full Stack Engineer • HacXLerate Finalist
       </p>
@@ -1002,11 +1002,14 @@ copies of the Software.
   <tr>
     <!-- MAITRI ADROJA -->
     <td width="33.3%" align="center" style="background:#090a14; border: 1.5px solid #00FF88; border-radius: 12px; padding: 18px; color: #F8FAFC;">
-      <h3 style="color:#00FF88; margin:0 0 6px 0;">Maitri Adroja</h3>
+      <h3 style="color:#00FF88; margin:0 0 6px 0;"><a href="https://www.linkedin.com/in/maitri-adroja-08a097354/" target="_blank" rel="noopener noreferrer" style="color:#00FF88; text-decoration:none;">Maitri Adroja</a></h3>
       <p style="color:#94A3B8; font-family:'Courier New', monospace; font-size:12px; margin:0 0 14px 0;">
         Frontend &amp; UI/UX Specialist • HacXLerate Finalist
       </p>
       <p align="center">
+        <a href="https://www.linkedin.com/in/maitri-adroja-08a097354/" target="_blank" rel="noopener noreferrer">
+          <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+        </a>
         <a href="mailto:maitri.adroja130626@marwadiuniversity.ac.in">
           <img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
         </a>
@@ -1017,11 +1020,14 @@ copies of the Software.
     </td>
     <!-- KRISHA PANCHOTIYA -->
     <td width="33.3%" align="center" style="background:#090a14; border: 1.5px solid #EC4899; border-radius: 12px; padding: 18px; color: #F8FAFC;">
-      <h3 style="color:#F472B6; margin:0 0 6px 0;">Krisha Panchotiya</h3>
+      <h3 style="color:#F472B6; margin:0 0 6px 0;"><a href="https://www.linkedin.com/in/krisha-panchotiya/" target="_blank" rel="noopener noreferrer" style="color:#F472B6; text-decoration:none;">Krisha Panchotiya</a></h3>
       <p style="color:#94A3B8; font-family:'Courier New', monospace; font-size:12px; margin:0 0 14px 0;">
         AI &amp; Healthcare Data • HacXLerate Finalist
       </p>
       <p align="center">
+        <a href="https://www.linkedin.com/in/krisha-panchotiya/" target="_blank" rel="noopener noreferrer">
+          <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+        </a>
         <a href="mailto:krishnaben.panchotiya130037@marwadiuniversity.ac.in">
           <img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
         </a>
@@ -1032,11 +1038,14 @@ copies of the Software.
     </td>
     <!-- KRUPA MAKWANA -->
     <td width="33.3%" align="center" style="background:#090a14; border: 1.5px solid #38BDF8; border-radius: 12px; padding: 18px; color: #F8FAFC;">
-      <h3 style="color:#38BDF8; margin:0 0 6px 0;">Krupa Makwana</h3>
+      <h3 style="color:#38BDF8; margin:0 0 6px 0;"><a href="https://www.linkedin.com/in/krupa-makwana-33552231a/" target="_blank" rel="noopener noreferrer" style="color:#38BDF8; text-decoration:none;">Krupa Makwana</a></h3>
       <p style="color:#94A3B8; font-family:'Courier New', monospace; font-size:12px; margin:0 0 14px 0;">
         QA &amp; Compliance • HacXLerate Finalist
       </p>
       <p align="center">
+        <a href="https://www.linkedin.com/in/krupa-makwana-33552231a/" target="_blank" rel="noopener noreferrer">
+          <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+        </a>
         <a href="mailto:krupa.makwana130100@marwadiuniversity.ac.in">
           <img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
         </a>

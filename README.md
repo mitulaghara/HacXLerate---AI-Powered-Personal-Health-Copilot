@@ -103,22 +103,22 @@
           </tr>
           <tr style="border-bottom:1px solid #1E293B;">
             <td style="padding:10px 12px; color:#00F5FF; font-weight:bold;">🩺 Medical Doctor</td>
-            <td style="padding:10px 12px;"><code>doctor@graminarogya.in</code></td>
-            <td style="padding:10px 12px;"><code>Doctor@123</code></td>
+            <td style="padding:10px 12px;"><code>DOC-398741</code></td>
+            <td style="padding:10px 12px;"><code>doctor@123</code></td>
             <td style="padding:10px 12px;"><a href="https://graminarogya-ai.vercel.app/doctor" style="color:#00F5FF;"><code>/doctor</code></a></td>
             <td style="padding:10px 12px; color:#94A3B8; font-size:12px;">Clinical Queue, OPD &amp; Digital Rx</td>
           </tr>
           <tr style="border-bottom:1px solid #1E293B;">
             <td style="padding:10px 12px; color:#C084FC; font-weight:bold;">👩‍⚕️ Frontline ASHA</td>
-            <td style="padding:10px 12px;"><code>asha@graminarogya.in</code></td>
-            <td style="padding:10px 12px;"><code>Asha@123</code></td>
+            <td style="padding:10px 12px;"><code>STF-675434</code></td>
+            <td style="padding:10px 12px;"><code>azsxdcfv</code></td>
             <td style="padding:10px 12px;"><a href="https://graminarogya-ai.vercel.app/asha" style="color:#00F5FF;"><code>/asha</code></a></td>
             <td style="padding:10px 12px; color:#94A3B8; font-size:12px;">Offline Triage &amp; Vitals Capture</td>
           </tr>
           <tr>
             <td style="padding:10px 12px; color:#F472B6; font-weight:bold;">👤 Rural Citizen</td>
-            <td style="padding:10px 12px;"><code>citizen@graminarogya.in</code></td>
-            <td style="padding:10px 12px;"><code>Citizen@123</code></td>
+            <td style="padding:10px 12px;"><code>PAT-999322</code></td>
+            <td style="padding:10px 12px;"><code>Aghara@2005</code></td>
             <td style="padding:10px 12px;"><a href="https://graminarogya-ai.vercel.app/profile" style="color:#00F5FF;"><code>/profile</code></a></td>
             <td style="padding:10px 12px; color:#94A3B8; font-size:12px;">EHR Vault, Timeline &amp; ABDM</td>
           </tr>

@@ -651,6 +651,17 @@ export default function Navbar({
               <div className="nav-dropdown-menu">
                 <div className="nav-dropdown-header">Access & Services</div>
                 <Link
+                  to="/"
+                  className="nav-dropdown-item"
+                  onClick={() => setOpenDropdown(null)}
+                >
+                  <HeartPulse size={15} strokeWidth={2} color="var(--primary)" />
+                  <div>
+                    <div>Home</div>
+                    <div className="nav-dropdown-item-desc">Public Health Portal</div>
+                  </div>
+                </Link>
+                <Link
                   to="/services"
                   className="nav-dropdown-item"
                   onClick={() => setOpenDropdown(null)}

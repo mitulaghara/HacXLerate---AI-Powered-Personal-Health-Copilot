@@ -44,19 +44,17 @@ export default function PublicLayout({
 
             {/* NAVIGATION */}
             <nav className="desktop-nav" style={{ flex: 1, display: 'flex', justifyContent: 'center', gap: '1.5rem', alignItems: 'center' }} aria-label="Primary">
-              <div className="brand-text-hide" style={{ position: 'relative' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--mutedForeground)', letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>
-                  <span>RURAL HEALTH</span>
-                </div>
-              </div>
               {[
+                { label: 'Home', path: '/' },
                 { label: 'Services', path: '/services' },
                 { label: 'Find Care', path: '/find-care' },
                 { label: 'Network', path: '/network' },
                 { label: 'Health Articles', path: '/articles' },
                 { label: 'Contact', path: '/contact' },
               ].map(link => {
-                const isActive = location.pathname === link.path;
+                const isActive = link.path === '/' 
+                  ? location.pathname === '/' 
+                  : location.pathname === link.path;
                 return (
                   <Link 
                     key={link.label} 

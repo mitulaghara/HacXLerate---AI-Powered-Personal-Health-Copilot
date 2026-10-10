@@ -72,66 +72,116 @@
 > **Welcome HacXLerate 2026 Evaluators & Technical Judges!**  
 > We have pre-configured high-fidelity test identities, mock sandbox credentials, and real GPS routing to ensure zero friction during your technical evaluation.
 
-<table>
+<table width="100%">
   <tr>
-    <td width="50%" valign="top" style="background:#090a18; border: 1.5px solid #00F5FF; border-radius: 12px; padding: 16px; color:#F8FAFC;">
-      <h3 style="color:#00F5FF; margin-top:0;">🔑 Live Evaluator Credentials</h3>
-      <table width="100%" style="font-size:13px; border-collapse:collapse;">
-        <tr style="border-bottom:1px solid #1E293B;">
-          <td style="padding:6px 0; color:#94A3B8;"><strong>Role</strong></td>
-          <td style="padding:6px 0; color:#94A3B8;"><strong>Username / Email</strong></td>
-          <td style="padding:6px 0; color:#94A3B8;"><strong>Password</strong></td>
-        </tr>
-        <tr style="border-bottom:1px solid #1E293B;">
-          <td style="padding:8px 0; color:#00FF88;"><strong>Executive Admin</strong></td>
-          <td style="padding:8px 0;"><code>admin</code></td>
-          <td style="padding:8px 0;"><code>27012005</code> <span style="color:#00FF88; font-size:11px;">(Instant Bypass)</span></td>
-        </tr>
-        <tr style="border-bottom:1px solid #1E293B;">
-          <td style="padding:8px 0; color:#00F5FF;"><strong>Medical Doctor</strong></td>
-          <td style="padding:8px 0;"><code>doctor@graminarogya.in</code></td>
-          <td style="padding:8px 0;"><code>Doctor@123</code></td>
-        </tr>
-        <tr style="border-bottom:1px solid #1E293B;">
-          <td style="padding:8px 0; color:#C084FC;"><strong>Frontline ASHA</strong></td>
-          <td style="padding:8px 0;"><code>asha@graminarogya.in</code></td>
-          <td style="padding:8px 0;"><code>Asha@123</code></td>
-        </tr>
-        <tr>
-          <td style="padding:8px 0; color:#F472B6;"><strong>Rural Citizen</strong></td>
-          <td style="padding:8px 0;"><code>citizen@graminarogya.in</code></td>
-          <td style="padding:8px 0;"><code>Citizen@123</code></td>
-        </tr>
+    <td style="background:#090a18; border: 1.5px solid #00F5FF; border-radius: 12px; padding: 18px; color:#F8FAFC;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+        <h3 style="color:#00F5FF; margin:0; font-size:16px;">🔑 Live Evaluator Credentials &amp; Instant Access Matrix</h3>
+        <div>
+          <a href="https://graminarogya-ai.vercel.app/signin" target="_blank" style="text-decoration:none;">
+            <img src="https://img.shields.io/badge/⚡%20OPEN%20SIGN--IN%20PORTAL-Instant%20Access-00F5FF?style=flat-square" alt="Sign In" />
+          </a>
+        </div>
+      </div>
+      <table width="100%" style="font-size:13px; border-collapse:collapse; text-align:left;">
+        <thead>
+          <tr style="border-bottom:1.5px solid #1E293B;">
+            <th style="padding:8px 12px; color:#94A3B8;">Role Designation</th>
+            <th style="padding:8px 12px; color:#94A3B8;">Username / Email</th>
+            <th style="padding:8px 12px; color:#94A3B8;">Password</th>
+            <th style="padding:8px 12px; color:#94A3B8;">Direct Portal Route</th>
+            <th style="padding:8px 12px; color:#94A3B8;">Access Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #1E293B;">
+            <td style="padding:10px 12px; color:#00FF88; font-weight:bold;">🛡️ Executive Admin</td>
+            <td style="padding:10px 12px;"><code>admin</code></td>
+            <td style="padding:10px 12px;"><code>27012005</code> <span style="color:#00FF88; font-size:11px;">(Master Bypass)</span></td>
+            <td style="padding:10px 12px;"><a href="https://graminarogya-ai.vercel.app/admin" style="color:#00F5FF;"><code>/admin</code></a></td>
+            <td style="padding:10px 12px; color:#94A3B8; font-size:12px;">Full Infrastructure &amp; RBAC Control</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1E293B;">
+            <td style="padding:10px 12px; color:#00F5FF; font-weight:bold;">🩺 Medical Doctor</td>
+            <td style="padding:10px 12px;"><code>doctor@graminarogya.in</code></td>
+            <td style="padding:10px 12px;"><code>Doctor@123</code></td>
+            <td style="padding:10px 12px;"><a href="https://graminarogya-ai.vercel.app/doctor" style="color:#00F5FF;"><code>/doctor</code></a></td>
+            <td style="padding:10px 12px; color:#94A3B8; font-size:12px;">Clinical Queue, OPD &amp; Digital Rx</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1E293B;">
+            <td style="padding:10px 12px; color:#C084FC; font-weight:bold;">👩‍⚕️ Frontline ASHA</td>
+            <td style="padding:10px 12px;"><code>asha@graminarogya.in</code></td>
+            <td style="padding:10px 12px;"><code>Asha@123</code></td>
+            <td style="padding:10px 12px;"><a href="https://graminarogya-ai.vercel.app/asha" style="color:#00F5FF;"><code>/asha</code></a></td>
+            <td style="padding:10px 12px; color:#94A3B8; font-size:12px;">Offline Triage &amp; Vitals Capture</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 12px; color:#F472B6; font-weight:bold;">👤 Rural Citizen</td>
+            <td style="padding:10px 12px;"><code>citizen@graminarogya.in</code></td>
+            <td style="padding:10px 12px;"><code>Citizen@123</code></td>
+            <td style="padding:10px 12px;"><a href="https://graminarogya-ai.vercel.app/profile" style="color:#00F5FF;"><code>/profile</code></a></td>
+            <td style="padding:10px 12px; color:#94A3B8; font-size:12px;">EHR Vault, Timeline &amp; ABDM</td>
+          </tr>
+        </tbody>
       </table>
-      <div style="margin-top:12px; padding:8px 12px; background:#0B132B; border-left:3px solid #00F5FF; border-radius:4px; font-size:12px;">
+      <div style="margin-top:12px; padding:8px 12px; background:#0B132B; border-left:3px solid #00F5FF; border-radius:4px; font-size:12px; color:#E2E8F0;">
         💡 <strong>Quick Sign-In:</strong> Access the portal at <a href="https://graminarogya-ai.vercel.app/signin" style="color:#00F5FF;">/signin</a>. Google OAuth 2.0 Single Sign-On is also enabled for 1-tap evaluation.
       </div>
     </td>
+  </tr>
+</table>
+
+<table width="100%">
+  <tr>
     <td width="50%" valign="top" style="background:#090a18; border: 1.5px solid #00FF88; border-radius: 12px; padding: 16px; color:#F8FAFC;">
-      <h3 style="color:#00FF88; margin-top:0;">🧪 Evaluation Test Scenarios</h3>
-      <ul style="font-size:13px; line-height:1.6; padding-left:18px; margin:0;">
-        <li>
-          <strong>🤖 Test Sanjeevani AI Real-Time Live Location &amp; Hospital Routing:</strong><br/>
-          Click the floating <em>Sanjeevani AI</em> button (GPS auto-detects with instant IP fallback) and enter:<br/>
-          <code>"I have heart problem, give me nearby hospital"</code><br/>
-          <span style="color:#94A3B8; font-size:11.5px;">→ Triggers live OpenStreetMap Nominatim &amp; Overpass spatial bounding queries around your exact location, returning authentic local hospitals with real geodesic distance in km, 1-tap Google Maps turn-by-turn directions, unclipped clinical triage cards, direct calling (<code>tel:</code>), and 108 Emergency ambulance shortcut.</span>
-        </li>
-        <li>
-          <strong>🗣️ Test Multilingual Symptom Safety:</strong><br/>
-          Type in Hindi or Gujarati: <code>"मुझे बुखार और सिरदर्द है कौन सी दवा लूँ"</code><br/>
-          <span style="color:#94A3B8; font-size:11.5px;">→ Returns structured triage output with dosage caveats, priority severity badges, and mandatory medical safety warnings.</span>
-        </li>
-        <li>
-          <strong>🇮🇳 Test ABDM Sandbox &amp; HL7 FHIR R4:</strong><br/>
-          Go to <em>Citizen Health Vault</em> → Click <em>Link ABHA</em>.<br/>
-          Enter ABHA ID: <code>14-8823-9912-3841</code> (Sandbox OTP: <code>123456</code>).<br/>
-          Click <em>Export HL7 FHIR R4</em> to download a validated standard JSON clinical Bundle.
-        </li>
-        <li>
-          <strong>🔍 Test Unified Patient Lookup:</strong><br/>
-          Search Patient ID <code>PAT-IND-1044</code> or Mobile <code>9870011226</code> to load Kavita Bai's comprehensive clinical history and chronological timeline.
-        </li>
-      </ul>
+      <h4 style="color:#00FF88; margin-top:0; margin-bottom:8px;">🤖 1. Test Sanjeevani AI — Live GPS Routing</h4>
+      <p style="font-size:13px; line-height:1.5; margin-bottom:8px;">
+        Click the floating <em>Sanjeevani AI</em> button (GPS auto-detects with instant IP fallback) and enter:
+      </p>
+      <div style="background:#050714; border:1px solid #1E293B; border-radius:6px; padding:8px; margin-bottom:8px;">
+        <code style="color:#00FF88; font-size:12px;">"I have heart problem, give me nearby hospital"</code>
+      </div>
+      <p style="font-size:12px; color:#94A3B8; line-height:1.5; margin:0;">
+        → Triggers live OpenStreetMap Nominatim &amp; Overpass spatial bounding queries, returning real nearby hospitals with geodesic distance in km, 1-tap Google Maps turn-by-turn directions, unclipped clinical cards, and 108 Emergency ambulance shortcut.
+      </p>
+    </td>
+    <td width="50%" valign="top" style="background:#090a18; border: 1.5px solid #00F5FF; border-radius: 12px; padding: 16px; color:#F8FAFC;">
+      <h4 style="color:#00F5FF; margin-top:0; margin-bottom:8px;">🗣️ 2. Test Multilingual Clinical Triage</h4>
+      <p style="font-size:13px; line-height:1.5; margin-bottom:8px;">
+        Switch language to Hindi or Gujarati and test clinical safety guards:
+      </p>
+      <div style="background:#050714; border:1px solid #1E293B; border-radius:6px; padding:8px; margin-bottom:8px;">
+        <code style="color:#00F5FF; font-size:12px;">"मुझे बुखार और सिरदर्द है कौन सी दवा लूँ"</code>
+      </div>
+      <p style="font-size:12px; color:#94A3B8; line-height:1.5; margin:0;">
+        → Returns structured triage output with clinical dosage rules, maximum daily limits, priority severity badges, and mandatory medical safety warnings without markdown table truncation.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top" style="background:#090a18; border: 1.5px solid #FF00E5; border-radius: 12px; padding: 16px; color:#F8FAFC;">
+      <h4 style="color:#FF00E5; margin-top:0; margin-bottom:8px;">🇮🇳 3. Test ABDM Sandbox &amp; HL7 FHIR R4</h4>
+      <p style="font-size:13px; line-height:1.5; margin-bottom:8px;">
+        Navigate to <em>Citizen Health Vault</em> → Click <em>Link ABHA</em>:
+      </p>
+      <div style="background:#050714; border:1px solid #1E293B; border-radius:6px; padding:8px; margin-bottom:8px; font-size:12px;">
+        ABHA ID: <code style="color:#FF00E5;">14-8823-9912-3841</code> &nbsp;|&nbsp; OTP: <code style="color:#00FF88;">123456</code>
+      </div>
+      <p style="font-size:12px; color:#94A3B8; line-height:1.5; margin:0;">
+        → Click <em>Export HL7 FHIR R4</em> to download a validated standard JSON clinical Bundle containing Patient, Condition, and DiagnosticReport entries for seamless national health exchange.
+      </p>
+    </td>
+    <td width="50%" valign="top" style="background:#090a18; border: 1.5px solid #C084FC; border-radius: 12px; padding: 16px; color:#F8FAFC;">
+      <h4 style="color:#C084FC; margin-top:0; margin-bottom:8px;">🔍 4. Test Unified Multi-Modal Patient Search</h4>
+      <p style="font-size:13px; line-height:1.5; margin-bottom:8px;">
+        Use the 4-way clinical search bar from Doctor Desk or ASHA Portal:
+      </p>
+      <div style="background:#050714; border:1px solid #1E293B; border-radius:6px; padding:8px; margin-bottom:8px; font-size:12px;">
+        Patient ID: <code style="color:#C084FC;">PAT-IND-1044</code> &nbsp;|&nbsp; Mobile: <code style="color:#00F5FF;">9870011226</code>
+      </div>
+      <p style="font-size:12px; color:#94A3B8; line-height:1.5; margin:0;">
+        → Instantly loads Kavita Bai's holistic clinical history, previous consultation notes, verified allergies, and the chronological Unified Health Timeline.
+      </p>
     </td>
   </tr>
 </table>

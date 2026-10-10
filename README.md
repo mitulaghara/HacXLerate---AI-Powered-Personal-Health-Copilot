@@ -1000,24 +1000,6 @@ copies of the Software.
 
 <table align="center" width="100%">
   <tr>
-    <!-- MAITRI ADROJA -->
-    <td width="33.3%" align="center" style="background:#090a14; border: 1.5px solid #00FF88; border-radius: 12px; padding: 18px; color: #F8FAFC;">
-      <h3 style="color:#00FF88; margin:0 0 6px 0;"><a href="https://www.linkedin.com/in/maitri-adroja-08a097354/" target="_blank" rel="noopener noreferrer" style="color:#00FF88; text-decoration:none;">Maitri Adroja</a></h3>
-      <p style="color:#94A3B8; font-family:'Courier New', monospace; font-size:12px; margin:0 0 14px 0;">
-        Frontend &amp; UI/UX Specialist • HacXLerate Finalist
-      </p>
-      <p align="center">
-        <a href="https://www.linkedin.com/in/maitri-adroja-08a097354/" target="_blank" rel="noopener noreferrer">
-          <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-        </a>
-        <a href="mailto:maitri.adroja130626@marwadiuniversity.ac.in">
-          <img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
-        </a>
-      </p>
-      <p style="color:#64748B; font-size:11px; margin-top:8px;">
-        Crafting accessible, human-centric responsive clinical interfaces for frontline workers.
-      </p>
-    </td>
     <!-- KRISHA PANCHOTIYA -->
     <td width="33.3%" align="center" style="background:#090a14; border: 1.5px solid #EC4899; border-radius: 12px; padding: 18px; color: #F8FAFC;">
       <h3 style="color:#F472B6; margin:0 0 6px 0;"><a href="https://www.linkedin.com/in/krisha-panchotiya/" target="_blank" rel="noopener noreferrer" style="color:#F472B6; text-decoration:none;">Krisha Panchotiya</a></h3>
@@ -1052,6 +1034,24 @@ copies of the Software.
       </p>
       <p style="color:#64748B; font-size:11px; margin-top:8px;">
         Ensuring cross-tier clinical validation, offline sync reliability, and legal health compliance.
+      </p>
+    </td>
+    <!-- MAITRI ADROJA -->
+    <td width="33.3%" align="center" style="background:#090a14; border: 1.5px solid #00FF88; border-radius: 12px; padding: 18px; color: #F8FAFC;">
+      <h3 style="color:#00FF88; margin:0 0 6px 0;"><a href="https://www.linkedin.com/in/maitri-adroja-08a097354/" target="_blank" rel="noopener noreferrer" style="color:#00FF88; text-decoration:none;">Maitri Adroja</a></h3>
+      <p style="color:#94A3B8; font-family:'Courier New', monospace; font-size:12px; margin:0 0 14px 0;">
+        Frontend &amp; UI/UX Specialist • HacXLerate Finalist
+      </p>
+      <p align="center">
+        <a href="https://www.linkedin.com/in/maitri-adroja-08a097354/" target="_blank" rel="noopener noreferrer">
+          <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+        </a>
+        <a href="mailto:maitri.adroja130626@marwadiuniversity.ac.in">
+          <img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+        </a>
+      </p>
+      <p style="color:#64748B; font-size:11px; margin-top:8px;">
+        Crafting accessible, human-centric responsive clinical interfaces for frontline workers.
       </p>
     </td>
   </tr>

@@ -234,7 +234,7 @@
 <!-- 3. ABOUT THE PROJECT & CONCEPT                                    -->
 <!-- ================================================================= -->
 
-## 🌌 03 // Quantum Architecture & Concept
+## 🏛️ 03 // System Architecture & Core Concept
 
 > *"Reaching a hospital building is not healthcare. Healthcare happens when the patient finds the right specialist, functional diagnostics, verified medicines, and continuous clinical history without losing medical records across village boundaries."*
 
@@ -262,8 +262,56 @@
 ```
 
 <p align="center">
-  <img src="./assets/architecture-diagram.svg" alt="3D Architecture Diagram" width="100%" />
+  <img src="./assets/architecture-diagram.svg" alt="Distributed Rural Health Intelligence Architecture" width="100%" />
 </p>
+
+### 🌐 The 4 Core Architectural Pillars (Implemented in GraminArogya)
+
+<table>
+  <!-- ROW 1: SANJEEVANI AI + ASHA COMPANION -->
+  <tr>
+    <td width="50%" valign="top" style="background:#0b0d1e; border: 1.5px solid #00F5FF; border-radius: 10px; padding: 14px;">
+      <h4 style="color:#00F5FF; margin-top:0;">🤖 Pillar 1: Sanjeevani AI &amp; Spatial Triage Engine</h4>
+      <ul>
+        <li><strong>Dual-Layer Live Geolocation:</strong> Browser HTML5 GPS coordinate capture with sub-second IP geolocation fallback (<code>ipapi.co</code> / <code>ip-api.com</code>) ensuring 100% reliable nearby hospital resolution without manual city input.</li>
+        <li><strong>OpenStreetMap Nominatim &amp; Overpass Queries:</strong> Spatial viewbox bounding box discovery locating active Community Health Centres (CHCs), District Civil Hospitals, and trauma centres with real contact numbers and facility types.</li>
+        <li><strong>Geodesic Distance &amp; 1-Tap Navigation:</strong> Real-time Haversine proximity computation paired with direct Google Maps turn-by-turn routing shortcuts and instant 108 Emergency dialer.</li>
+        <li><strong>Groq LPU Acceleration:</strong> Sub-500ms clinical triage powered by Groq LLaMA 3.3 70B and Groq Whisper Large v3 for multilingual voice-to-text input.</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top" style="background:#0b0d1e; border: 1.5px solid #00FF88; border-radius: 10px; padding: 14px;">
+      <h4 style="color:#00FF88; margin-top:0;">👩‍⚕️ Pillar 2: Frontline ASHA Companion &amp; Offline Sync</h4>
+      <ul>
+        <li><strong>Offline-First IndexedDB Resilience:</strong> Local in-browser storage allows frontline ASHA workers to record patient surveys, maternal vitals, and emergency visits even in zero-reception rural hamlets.</li>
+        <li><strong>Automatic Background Cloud Sync:</strong> Automatically reconciles and flushes pending offline queues to MongoDB Atlas as soon as 2G/4G or Wi-Fi connectivity is restored.</li>
+        <li><strong>Scannable QR Health Passports:</strong> Generates unique offline-compatible QR codes for rural families, eliminating reliance on easily misplaced paper health booklets.</li>
+        <li><strong>Rapid Vitals Screening:</strong> Color-coded threshold alerts for high blood pressure, maternal risk factors, and severe child malnutrition.</li>
+      </ul>
+    </td>
+  </tr>
+
+  <!-- ROW 2: DOCTOR DESK + ABDM / COMMAND CENTER -->
+  <tr>
+    <td width="50%" valign="top" style="background:#0b0d1e; border: 1.5px solid #8B5CF6; border-radius: 10px; padding: 14px;">
+      <h4 style="color:#8B5CF6; margin-top:0;">🩺 Pillar 3: Clinical Doctor Desk &amp; Care Continuity</h4>
+      <ul>
+        <li><strong>Rapid Digital Rx Builder:</strong> Clean prescription authoring system with automated dosage guidelines, contraindication warnings, and instant PDF/WhatsApp export.</li>
+        <li><strong>OTP-Gated Follow-Up Protocol:</strong> Secure patient follow-up verification cycle ensuring clinical treatment completion and reducing rural drop-out rates.</li>
+        <li><strong>Unified Chronological Timeline:</strong> Consolidates diagnostic reports, vitals logs, and previous consultation summaries into a single interactive chronological view.</li>
+        <li><strong>ICD-10 Diagnostic Tagging:</strong> Standardized diagnostic categorization for streamlined referral handoffs to district civil hospitals.</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top" style="background:#0b0d1e; border: 1.5px solid #FF00E5; border-radius: 10px; padding: 14px;">
+      <h4 style="color:#FF00E5; margin-top:0;">🛡️ Pillar 4: ABDM Interoperability &amp; District Command Center</h4>
+      <ul>
+        <li><strong>ABDM &amp; HL7 FHIR R4 Gateway:</strong> Validates 14-digit ABHA IDs and exports longitudinal health encounters as compliant FHIR R4 JSON bundles for national health grid portability.</li>
+        <li><strong>District Outbreak Radar:</strong> Real-time heatmaps for Chief Medical Officers (CMOs) tracking seasonal water-borne and viral spikes across village clusters.</li>
+        <li><strong>24x7 Blood Bank &amp; Donor Grid:</strong> Live inventory telemetry with emergency donor matching by blood group, distance, and contact availability.</li>
+        <li><strong>PHC Pharmacy Stockout Monitor:</strong> Proactive telemetry tracking critical emergency drug shortages before dispensary shelves run dry.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 <p align="center">
   <img src="./assets/neon-divider.svg" alt="Cyber Divider" width="100%" />
@@ -851,7 +899,7 @@ We welcome developers, public healthcare advocates, and designers to contribute 
 1. **Fork the Repository:** Click the `Fork` button at the top right of this page.
 2. **Create a Feature Branch:**
    ```bash
-   git checkout -b feat/quantum-clinical-routing
+   git checkout -b feat/smart-clinical-routing
    ```
 3. **Commit Your Innovations:**
    ```bash
@@ -859,7 +907,7 @@ We welcome developers, public healthcare advocates, and designers to contribute 
    ```
 4. **Push to Your Remote:**
    ```bash
-   git push origin feat/quantum-clinical-routing
+   git push origin feat/smart-clinical-routing
    ```
 5. **Open a Pull Request:** Submit a PR with detailed test steps and architectural rationale.
 

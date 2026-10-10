@@ -382,6 +382,21 @@ const SwasthyaSethuAIAssistant = () => {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+    const handleOpenAi = (e) => {
+      setIsOpen(true);
+      if (e?.detail?.prompt) {
+        if (e.detail.autoSend) {
+          sendMessage(e.detail.prompt);
+        } else {
+          setInput(e.detail.prompt);
+        }
+      }
+    };
+    window.addEventListener('open-sanjeevani-ai', handleOpenAi);
+    return () => window.removeEventListener('open-sanjeevani-ai', handleOpenAi);
+  }, [messages, userLocation, language]);
+
   const getToken = () => localStorage.getItem('gramin_arogya_token');
 
   const sendMessage = async (text) => {

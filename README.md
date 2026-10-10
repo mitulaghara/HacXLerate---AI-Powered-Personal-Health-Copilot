@@ -13,11 +13,14 @@
     <a href="https://github.com/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot">
       <img src="https://img.shields.io/badge/HacXLerate%202026-NATIONAL%20FINALIST-00F5FF?style=for-the-badge&logo=target&logoColor=black" alt="HacXLerate 2026" />
     </a>
+    <a href="https://www.altrixlabs.ai/" target="_blank">
+      <img src="https://img.shields.io/badge/ALTRIX%20LABS-CHALLENGE%20ALIGNED-FF00E5?style=for-the-badge&logo=target&logoColor=white" alt="Altrix Labs Challenge" />
+    </a>
     <a href="#-01--evaluator--judge-quick-start-dossier">
-      <img src="https://img.shields.io/badge/TEAM%20TECHYODHA-ID%3A%20XLO636-FF00E5?style=for-the-badge&logo=codeforces&logoColor=white" alt="Team Techyodha" />
+      <img src="https://img.shields.io/badge/TEAM%20TECHYODHA-ID%3A%20XLO636-8B5CF6?style=for-the-badge&logo=codeforces&logoColor=white" alt="Team Techyodha" />
     </a>
     <a href="https://github.com/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot/stargazers">
-      <img src="https://img.shields.io/github/stars/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot?style=for-the-badge&logo=apachespark&color=8B5CF6&logoColor=white" alt="Stars" />
+      <img src="https://img.shields.io/github/stars/mitulaghara/HacXLerate---AI-Powered-Personal-Health-Copilot?style=for-the-badge&logo=apachespark&color=00F5FF&logoColor=white" alt="Stars" />
     </a>
     <a href="./LICENSE">
       <img src="https://img.shields.io/badge/LICENSE-MIT-38BDF8?style=for-the-badge&logo=open-source-initiative&logoColor=white" alt="License" />
@@ -49,11 +52,14 @@
     <a href="#-01--evaluator--judge-quick-start-dossier">
       <img src="https://img.shields.io/badge/⚖️%20JUDGE%20TEST%20CREDENTIALS-Instant%20Access-00FF88?style=for-the-badge&labelColor=050509" alt="Judge Credentials" />
     </a>
+    <a href="#-altrix-labs-challenge-alignment--100-point-evaluation-matrix">
+      <img src="https://img.shields.io/badge/🎯%20ALTRIX%20LABS%20MATRIX-100%20Pt%20Scorecard-FF00E5?style=for-the-badge&labelColor=050509" alt="Altrix Labs Matrix" />
+    </a>
     <a href="#-04--next-gen-feature-arsenal">
       <img src="https://img.shields.io/badge/⚡%20FEATURE%20ARSENAL-14%20Innovations-8B5CF6?style=for-the-badge&labelColor=050509" alt="Explore Features" />
     </a>
     <a href="#-07--restful-api-endpoints-specification">
-      <img src="https://img.shields.io/badge/🔌%20API%20SPECS-RESTful%20Docs-FF00E5?style=for-the-badge&labelColor=050509" alt="API Docs" />
+      <img src="https://img.shields.io/badge/🔌%20API%20SPECS-RESTful%20Docs-38BDF8?style=for-the-badge&labelColor=050509" alt="API Docs" />
     </a>
   </p>
 
@@ -184,6 +190,113 @@
       </p>
     </td>
   </tr>
+</table>
+
+<p align="center">
+  <img src="./assets/neon-divider.svg" alt="Cyber Divider" width="100%" />
+</p>
+
+<!-- ================================================================= -->
+<!-- ALTRIX LABS CHALLENGE ALIGNMENT & 100-POINT EVALUATION MATRIX     -->
+<!-- ================================================================= -->
+
+<a id="-altrix-labs-challenge-alignment--100-point-evaluation-matrix"></a>
+## 🎯 Altrix Labs Challenge Alignment & 100-Point Evaluation Matrix
+
+> **Challenge Partner**: [Altrix Labs](https://www.altrixlabs.ai/) *(AI-Native Innovation Company)*  
+> **Challenge Statement**: *"Design and develop an AI-powered Personal Health Copilot that helps individuals understand, organize, and manage their healthcare journey through intelligent analysis of medical records, prescriptions, diagnostic reports, and wellness data."*
+
+GraminArogya was architected from day one to deliver **100% turnkey compliance** with Altrix Labs' Round 1 core scope and both high-value bonus criteria.
+
+---
+
+### 📋 Round 1 Scope & Bonus Feature Verification Matrix
+
+| Round 1 Requirement | Altrix Labs Specification | GraminArogya Implementation | Code Verification & Route |
+| :--- | :--- | :--- | :--- |
+| **3.1 Medical Record Intelligence & OCR** | Ingest prescriptions, lab reports, discharge summaries, and diagnostic records; extract medicines, dosages, test values, diagnoses, and dates. | Multimodal OCR engine ingests PDF/JPG/PNG records, automatically extracting medicines, frequencies, dosages, quantitative biomarkers, reference bounds, abnormal tags, and consultation dates. | [`backend/controllers/medicalDocumentController.js`](file:///Users/mitulaghara/Documents/HacXLerate%20-%20AI-Powered%20Personal%20Health%20Copilot/backend/controllers/medicalDocumentController.js)<br>• Category schema: `blood_test`, `diagnostic_lab`, `prescription`, `discharge_summary`<br>• Route: `POST /api/documents/upload` |
+| **3.1 AI Plain-Language Health Summary** | Explain records in plain language, including what abnormal values mean. | Translates complex clinical reports into jargon-free, patient-friendly summaries; flags `HIGH` / `LOW` / `CRITICAL` values with clear medical meaning, lifestyle precautions, and emergency disclaimers. | [`backend/controllers/medicalDocumentController.js`](file:///Users/mitulaghara/Documents/HacXLerate%20-%20AI-Powered%20Personal%20Health%20Copilot/backend/controllers/medicalDocumentController.js)<br>• Schema field: `aiExtraction.summary`<br>• Abnormal flags: `findings.abnormalFlags`<br>• Route: `GET /api/documents/patient/:id` |
+| **3.1 Unified Health Profile & Timeline** | Organize everything into one profile or timeline. | Chronological, multi-channel **Unified Health Timeline** uniting lab reports, prescription courses, doctor visit summaries, and vitals history into a single interactive citizen profile. | [`frontend/src/components/UnifiedHealthTimeline.jsx`](file:///Users/mitulaghara/Documents/HacXLerate%20-%20AI-Powered%20Personal%20Health%20Copilot/frontend/src/components/UnifiedHealthTimeline.jsx)<br>• Live in Citizen Portal (`/citizen-portal`) Step 4 |
+| **3.2 Bonus 1: Multi-Language Support** ⭐ | Summaries and interface in at least 1 regional language (Hindi, Telugu, Tamil, etc.); OCR that handles bilingual or handwritten prescriptions. | Full support for **7 Indian Regional Languages** (Hindi `hi`, Gujarati `gu`, Marathi `mr`, Tamil `ta`, Telugu `te`, Bengali `bn`, English `en`). Features native voice-to-text triage and regional audio playback. | [`frontend/src/utils/languageHelper.js`](file:///Users/mitulaghara/Documents/HacXLerate%20-%20AI-Powered%20Personal%20Health%20Copilot/frontend/src/utils/languageHelper.js)<br>[`frontend/src/components/AIAssistant.jsx`](file:///Users/mitulaghara/Documents/HacXLerate%20-%20AI-Powered%20Personal%20Health%20Copilot/frontend/src/components/AIAssistant.jsx)<br>• Toggle available in header & Sanjeevani AI |
+| **3.2 Bonus 2: ABDM / ABHA Readiness** ⭐ | Data model aligned to ABDM standards (FHIR-style records) with mock ABHA ID link or import. | Complete ABDM integration: 14-digit ABHA ID linking (`14-8823-9912-3841`), OTP simulation (`123456`), and one-click export of clinical records as a standard **HL7 FHIR R4 JSON Bundle** (`Patient`, `Condition`, `DiagnosticReport`). | [`backend/controllers/abdmController.js`](file:///Users/mitulaghara/Documents/HacXLerate%20-%20AI-Powered%20Personal%20Health%20Copilot/backend/controllers/abdmController.js)<br>[`backend/models/Citizen.js`](file:///Users/mitulaghara/Documents/HacXLerate%20-%20AI-Powered%20Personal%20Health%20Copilot/backend/models/Citizen.js)<br>• Routes: `POST /api/abdm/link-abha`, `GET /api/abdm/fhir-bundle/:citizenId` |
+| **3.3 Working Deliverables** | Working prototype of upload, extraction, summary, and timeline; architecture diagram; demo credentials. | Live production web application on Vercel, end-to-end data pipelines, interactive architecture diagrams, and instant evaluation credentials for Patient, ASHA, and Doctor roles. | **Live App**: [graminarogya-ai.vercel.app](https://graminarogya-ai.vercel.app)<br>• Architecture: [Section 03](#-03--quantum-architecture--concept)<br>• Test Credentials: [Section 01](#-01--evaluator--judge-quick-start-dossier) |
+
+---
+
+### 📊 100-Point Evaluation Matrix Breakdown
+
+<table>
+  <thead>
+    <tr style="background:#0F172A; color:#00F5FF;">
+      <th align="left">Evaluation Criterion</th>
+      <th align="center">Weight</th>
+      <th align="left">What Judges Look For</th>
+      <th align="left">How GraminArogya Satisfies & Scores</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>🤖 AI Utilization</strong></td>
+      <td align="center"><strong>35%</strong></td>
+      <td>Accuracy of OCR and extraction (medicines, dosages, test values, dates); quality of plain-language summaries and explanations of abnormal values.</td>
+      <td>
+        • <strong>Google Gemini Multimodal Engine</strong> parses handwritten & bilingual prescriptions, discharge sheets, and lab panels.<br>
+        • Extracts structured clinical entities: medicine name, dosage strength, frequency, diagnosis code, lab metric, reference range, and test date.<br>
+        • Generates plain-language interpretations with explicit abnormal flag explanations (e.g. <em>"HbA1c 9.2% is High — indicates prolonged elevated blood sugar"</em>).
+      </td>
+    </tr>
+    <tr>
+      <td><strong>🏗️ Technical Architecture</strong></td>
+      <td align="center"><strong>25%</strong></td>
+      <td>Clean data pipeline, sensible storage, structured data model, ABDM-ready schema.</td>
+      <td>
+        • <strong>Robust Data Pipeline</strong>: Express.js REST API with file buffering, Gemini multimodal analysis, MongoDB Atlas document store, and real-time Socket.io alerts.<br>
+        • <strong>ABDM/FHIR Data Model</strong>: Native schema mapped to HL7 FHIR R4 standard structures for seamless national health interoperability.<br>
+        • <strong>Offline-First Resilience</strong>: IndexedDB caching + Service Worker PWA for zero-connectivity rural ASHA workers.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>✨ User Experience</strong></td>
+      <td align="center"><strong>20%</strong></td>
+      <td>Easy upload flow, readable summaries, clear health timeline.</td>
+      <td>
+        • <strong>Zero-Friction Ingestion</strong>: Drag-and-drop document vault with real-time extraction preview and audio summary playback.<br>
+        • <strong>Visual Timeline</strong>: Chronological interactive timeline color-coded by event type (Vitals, Lab, Prescription, Doctor Note).<br>
+        • <strong>Futuristic Cyber-Neon HUD</strong>: Intuitive role-based interfaces designed for rural patients, frontline ASHA workers, and medical officers alike.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>🩺 Healthcare Impact</strong></td>
+      <td align="center"><strong>10%</strong></td>
+      <td>Medical correctness, safe wording, no misleading claims, appropriate disclaimers.</td>
+      <td>
+        • <strong>Safety Disclaimers Built-in</strong>: Every AI generation includes mandatory clinical triage disclaimers highlighting that outputs are supportive and require licensed doctor verification.<br>
+        • <strong>Safe Non-Prescriptive Guidance</strong>: Flags red alerts and directs patients to the nearest verified PHC / CHC facility via GPS OpenStreetMap radar rather than prescribing unverified treatments.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>🎤 Presentation & Demo</strong></td>
+      <td align="center"><strong>10%</strong></td>
+      <td>Working prototype shown clearly in a short demo or a few slides.</td>
+      <td>
+        • <strong>Production Edge Deployment</strong>: 100% accessible live at <a href="https://graminarogya-ai.vercel.app">graminarogya-ai.vercel.app</a>.<br>
+        • <strong>Pre-Configured Demo Credentials</strong>: 1-click test credentials for Patient (<code>PAT-999322</code>), ASHA Worker (<code>STF-675434</code>), and Doctor (<code>DOC-398741</code>).<br>
+        • Complete self-contained walkthrough with pre-seeded clinical histories and sample documents.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>⭐ Bonus Credit (Round 1)</strong></td>
+      <td align="center"><strong>+5 to 10%<br><em>(Bonus)</em></strong></td>
+      <td>
+        • <strong>Multi-language support</strong>: Regional-language summaries and OCR for bilingual or handwritten prescriptions.<br>
+        • <strong>ABDM/ABHA readiness</strong>: FHIR-style records and a mock ABHA link or import.
+      </td>
+      <td>
+        • <strong>7 Languages Implemented</strong>: Hindi, Gujarati, Marathi, Tamil, Telugu, Bengali, and English with voice synthesis and translation.<br>
+        • <strong>Mock ABHA Gateway Active</strong>: ABHA ID validation (<code>14-8823-9912-3841</code>) + OTP verification (<code>123456</code>) + one-click export to standard <strong>HL7 FHIR R4 JSON Bundle</strong>.
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <p align="center">
@@ -1094,6 +1207,7 @@ copies of the Software.
 
   <p style="color:#64748B; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px;">
     🌿 GRAMIN AROGYA // BUILT WITH DEDICATION FOR HACXLERATE 2026 (TEAM TECHYODHA)<br/>
+    INNOVATION CHALLENGE BY <a href="https://www.altrixlabs.ai/" target="_blank" style="color:#FF00E5; text-decoration:none;">ALTRIX LABS</a> // AI-POWERED PERSONAL HEALTH COPILOT<br/>
     ENGINEERED FOR THE HEALTHCARE DIGNITY OF 800+ MILLION RURAL CITIZENS
   </p>
 

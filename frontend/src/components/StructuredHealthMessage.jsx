@@ -93,7 +93,7 @@ const HospitalCard = ({ facility }) => {
     rawLines = []
   } = facility;
 
-  const cleanPhone = phone ? phone.replace(/[^0-9+]/g, '') : '+915912412001';
+  const cleanPhone = phone ? phone.replace(/[^0-9+]/g, '') : '108';
 
   return (
     <div className="my-3 rounded-2xl border border-teal-200/90 bg-white p-4 shadow-sm text-slate-800 transition-all hover:shadow-md">
@@ -167,12 +167,23 @@ const HospitalCard = ({ facility }) => {
       {/* Full-Width Action Buttons Box (Spacious, prominent, easy to tap) */}
       <div className="space-y-2 pt-1 border-t border-slate-100">
         <a
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name + (distance ? ' ' + distance : ''))}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-[0.99] px-3.5 py-2.5 text-xs font-bold text-white shadow-sm transition-all text-center"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <Navigation size={14} />
+          <span>Live GPS Route & Directions</span>
+        </a>
+
+        <a
           href={`tel:${cleanPhone}`}
           className="w-full flex items-center justify-center gap-2 rounded-xl bg-teal-600 hover:bg-teal-700 active:scale-[0.99] px-3.5 py-2.5 text-xs font-bold text-white shadow-sm transition-all text-center"
           onClick={(e) => e.stopPropagation()}
         >
           <PhoneCall size={14} />
-          <span>Call Hospital: {phone || '+91-591-2412001'}</span>
+          <span>{phone ? `Call Hospital: ${phone}` : 'Call Emergency Ambulance: 108'}</span>
         </a>
 
         <a

@@ -297,28 +297,69 @@ const SwasthyaSethuAIAssistant = () => {
   const [locationCity, setLocationCity] = useState('');
   const [isLocating, setIsLocating] = useState(false);
 
+  const fallbackIpLocation = async () => {
+    try {
+      const res = await fetch('http://ip-api.com/json/?fields=status,city,regionName,country,lat,lon');
+      if (res.ok) {
+        const d = await res.json();
+        if (d.status === 'success' && d.lat && d.lon) {
+          const coords = { lat: d.lat, lng: d.lon, city: d.city || d.regionName };
+          setUserLocation(coords);
+          setLocationCity(d.city || d.regionName || 'Your City');
+          return coords;
+        }
+      }
+    } catch (e) {
+      console.warn('IP location fallback notice:', e);
+    }
+    return null;
+  };
+
   const requestLiveLocation = () => {
-    if (!navigator.geolocation) return;
     setIsLocating(true);
+    if (!navigator.geolocation) {
+      fallbackIpLocation().finally(() => setIsLocating(false));
+      return;
+    }
+
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const coords = { lat: pos.coords.latitude, lng: pos.coords.longitude };
         setUserLocation(coords);
         setIsLocating(false);
-        fetch(`https://photon.komoot.io/reverse?lat=${coords.lat}&lon=${coords.lng}`)
+
+        // Reverse geocode to get city / locality name
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${coords.lat}&lon=${coords.lng}&zoom=14`, {
+          headers: { 'Accept-Language': 'en,hi,gu' }
+        })
           .then(r => r.json())
           .then(d => {
-            const p = d?.features?.[0]?.properties;
-            const city = p?.city || p?.district || p?.county || p?.state;
-            if (city) setLocationCity(city);
+            const addr = d?.address || {};
+            const city = addr.city || addr.town || addr.village || addr.suburb || addr.district || addr.state;
+            if (city) {
+              setLocationCity(city);
+              setUserLocation(prev => ({ ...prev, city }));
+            }
           })
-          .catch(() => {});
+          .catch(() => {
+            fetch(`https://photon.komoot.io/reverse?lat=${coords.lat}&lon=${coords.lng}`)
+              .then(r => r.json())
+              .then(d => {
+                const p = d?.features?.[0]?.properties;
+                const city = p?.city || p?.district || p?.county || p?.state;
+                if (city) {
+                  setLocationCity(city);
+                  setUserLocation(prev => ({ ...prev, city }));
+                }
+              })
+              .catch(() => {});
+          });
       },
       (err) => {
-        console.warn('Geolocation error:', err.message);
-        setIsLocating(false);
+        console.warn('GPS Geolocation unavailable, falling back to IP location:', err.message);
+        fallbackIpLocation().finally(() => setIsLocating(false));
       },
-      { enableHighAccuracy: true, timeout: 8000 }
+      { enableHighAccuracy: true, timeout: 6000 }
     );
   };
 
@@ -327,7 +368,7 @@ const SwasthyaSethuAIAssistant = () => {
   }, []);
 
   const suggestions = [
-    "I have heart problem, give me nearby hospital",
+    "Find nearest hospital to my live location",
     "What medicine should I take for fever and headache?",
     "Find nearest hospital with available ICU beds",
     "First aid guidance for sudden chest pain"
@@ -520,43 +561,27 @@ const SwasthyaSethuAIAssistant = () => {
               <MapPin size={13} className={userLocation ? 'text-emerald-600 shrink-0' : 'text-slate-400 shrink-0'} />
               <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 600 }}>
                 {userLocation 
-                  ? `📍 Live GPS: ${locationCity || `${userLocation.lat.toFixed(2)}, ${userLocation.lng.toFixed(2)}`} (Active)`
-                  : '📍 Location: Registered Health Facilities'}
+                  ? `📍 Live Location: ${locationCity || `${userLocation.lat.toFixed(2)}, ${userLocation.lng.toFixed(2)}`} (Nearby Hospitals)`
+                  : (isLocating ? '📍 Detecting live location...' : '📍 Fetching nearby hospitals...')}
               </span>
             </div>
-            {!userLocation ? (
-              <button
-                onClick={requestLiveLocation}
-                style={{
-                  background: '#ecfdf5',
-                  color: '#059669',
-                  border: '1px solid #a7f3d0',
-                  borderRadius: '6px',
-                  padding: '2px 8px',
-                  fontSize: '0.72rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  whiteSpace: 'nowrap'
-                }}
-              >
-                {isLocating ? 'Locating...' : 'Enable GPS'}
-              </button>
-            ) : (
-              <button
-                onClick={requestLiveLocation}
-                title="Refresh GPS"
-                style={{
-                  background: 'transparent',
-                  color: '#16a34a',
-                  border: 'none',
-                  fontSize: '0.7rem',
-                  fontWeight: 700,
-                  cursor: 'pointer'
-                }}
-              >
-                Refresh
-              </button>
-            )}
+            <button
+              onClick={requestLiveLocation}
+              title="Refresh Live Location"
+              style={{
+                background: userLocation ? 'transparent' : '#ecfdf5',
+                color: '#059669',
+                border: userLocation ? 'none' : '1px solid #a7f3d0',
+                borderRadius: '6px',
+                padding: '2px 8px',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                whiteSpace: 'nowrap'
+              }}
+            >
+              {isLocating ? 'Locating...' : 'Refresh GPS'}
+            </button>
           </div>
 
           <Conversation className="flex-1 overflow-y-auto p-3.5 gap-3 bg-slate-50/80" style={{ maxHeight: '440px' }}>

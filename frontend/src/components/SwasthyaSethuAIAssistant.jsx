@@ -15,6 +15,18 @@ const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+
+  @media (max-width: 640px) {
+    bottom: 24px;
+    right: 16px;
+  }
+
+  @media (max-width: 480px) {
+    bottom: 16px;
+    right: 12px;
+    left: 12px;
+    align-items: flex-end;
+  }
 `;
 
 const ChatButton = styled.button`
@@ -35,10 +47,15 @@ const ChatButton = styled.button`
     transform: scale(1.05);
     box-shadow: 0 15px 35px rgba(16, 185, 129, 0.5);
   }
+
+  @media (max-width: 480px) {
+    width: 52px;
+    height: 52px;
+  }
 `;
 
 const ChatWindow = styled.div`
-  width: clamp(360px, 94vw, 450px);
+  width: clamp(340px, 92vw, 450px);
   height: 640px;
   max-height: 85vh;
   background: white;
@@ -52,10 +69,18 @@ const ChatWindow = styled.div`
   transition: all 0.3s ease;
   border: 1px solid rgba(0,0,0,0.08);
 
-  @media (max-width: 480px) {
-    width: calc(100vw - 20px);
+  @media (max-width: 640px) {
+    width: clamp(300px, 92vw, 420px);
     height: 75vh;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    max-width: 100%;
+    height: 80vh;
+    max-height: calc(100dvh - 80px);
     border-radius: 16px;
+    margin-bottom: 8px;
   }
 `;
 

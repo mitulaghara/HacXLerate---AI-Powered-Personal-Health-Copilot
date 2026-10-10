@@ -292,7 +292,7 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
       </section>
 
       {/* ---------------- 24x7 EMERGENCY LIFELINE HOTLINES STRIP ---------------- */}
-      <section style={{ background: '#f8fafc', borderTop: '1px solid var(--borderLight)', borderBottom: '1px solid var(--borderLight)', padding: '2.5rem 0' }}>
+      <section className="home-section" style={{ background: '#f8fafc', borderTop: '1px solid var(--borderLight)', borderBottom: '1px solid var(--borderLight)', padding: '2.5rem 0' }}>
         <div className="np-container">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
             <div>
@@ -308,11 +308,12 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
             </span>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
+          <div className="emergency-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '1.25rem' }}>
             {emergencyLifelines.map((line) => (
               <a
                 key={line.number}
                 href={`tel:${line.number}`}
+                className="emergency-lifeline-card"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -357,7 +358,7 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
       </section>
 
       {/* ---------------- QUICK HEALTHCARE ACTION CARDS ---------------- */}
-      <section style={{ padding: '5rem 0 4rem 0', background: 'var(--background)' }}>
+      <section className="home-section" style={{ padding: '5rem 0 4rem 0', background: 'var(--background)' }}>
         <div className="np-container">
           <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 3.5rem auto' }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 700, color: 'var(--primary)', letterSpacing: '0.08em' }}>
@@ -371,11 +372,12 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.75rem' }}>
+          <div className="quick-actions-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '1.75rem' }}>
             {quickActionCards.map((card, idx) => (
               <div
                 key={idx}
                 onClick={card.onClick}
+                className="quick-action-card"
                 style={{
                   background: card.highlight ? '#F0FDF4' : '#ffffff',
                   border: card.highlight ? '2px solid #86EFAC' : '1.5px solid var(--borderLight)',
@@ -429,9 +431,9 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
       </section>
 
       {/* ---------------- SANJEEVANI AI FLAGSHIP SHOWCASE SECTION ---------------- */}
-      <section style={{ padding: '5rem 0', background: 'linear-gradient(180deg, #F0FDF4 0%, #FFFFFF 100%)', borderTop: '1px solid #DCFCE7', borderBottom: '1px solid var(--borderLight)' }}>
+      <section className="home-section" style={{ padding: '5rem 0', background: 'linear-gradient(180deg, #F0FDF4 0%, #FFFFFF 100%)', borderTop: '1px solid #DCFCE7', borderBottom: '1px solid var(--borderLight)' }}>
         <div className="np-container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3.5rem', alignItems: 'center' }}>
+          <div className="sanjeevani-showcase-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '3.5rem', alignItems: 'center' }}>
             
             {/* Left AI Description */}
             <div>
@@ -470,7 +472,7 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
               </div>
 
               <button
-                className="np-btn np-btn-primary np-btn-lg"
+                className="np-btn np-btn-primary np-btn-lg mobile-full-width"
                 onClick={() => handleLaunchAiPrompt('I have heart problem, give me nearby hospital')}
               >
                 <MessageSquare size={18} />
@@ -479,8 +481,8 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
             </div>
 
             {/* Right Interactive Prompt Launcher Card */}
-            <div style={{ background: '#ffffff', border: '1.5px solid #A7F3D0', borderRadius: '24px', padding: '2rem', boxShadow: '0 20px 40px rgba(16, 185, 129, 0.08)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid #F1F5F9', marginBottom: '1.5rem' }}>
+            <div className="sanjeevani-prompt-card" style={{ background: '#ffffff', border: '1.5px solid #A7F3D0', borderRadius: '24px', padding: '2rem', boxShadow: '0 20px 40px rgba(16, 185, 129, 0.08)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid #F1F5F9', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '8px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#10B981' }}></div>
                   <span style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--foreground)' }}>Try Sample Queries</span>
@@ -542,7 +544,7 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
       </section>
 
       {/* ---------------- 4-TIER ECOSYSTEM PILLARS ---------------- */}
-      <section style={{ padding: '5rem 0', background: 'var(--background)' }}>
+      <section className="home-section" style={{ padding: '5rem 0', background: 'var(--background)' }}>
         <div className="np-container">
           <div style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto 3.5rem auto' }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 700, color: 'var(--primary)', letterSpacing: '0.08em' }}>
@@ -556,10 +558,11 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+          <div className="ecosystem-pillars-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '2rem' }}>
             {ecosystemPillars.map((pillar, idx) => (
               <div
                 key={idx}
+                className="ecosystem-pillar-card"
                 style={{
                   background: '#ffffff',
                   border: '1.5px solid var(--borderLight)',
@@ -639,7 +642,7 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
       </section>
 
       {/* ---------------- HOW IT WORKS (3-STEP CARE WORKFLOW) ---------------- */}
-      <section style={{ padding: '5rem 0', background: '#F8FAFC', borderTop: '1px solid var(--borderLight)', borderBottom: '1px solid var(--borderLight)' }}>
+      <section className="home-section" style={{ padding: '5rem 0', background: '#F8FAFC', borderTop: '1px solid var(--borderLight)', borderBottom: '1px solid var(--borderLight)' }}>
         <div className="np-container">
           <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 3.5rem auto' }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 700, color: 'var(--primary)', letterSpacing: '0.08em' }}>
@@ -653,10 +656,10 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+          <div className="workflow-steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '2rem' }}>
             
             {/* Step 1 */}
-            <div style={{ background: '#ffffff', borderRadius: '18px', padding: '2.25rem 2rem', border: '1.5px solid var(--borderLight)', position: 'relative' }}>
+            <div className="workflow-step-card" style={{ background: '#ffffff', borderRadius: '18px', padding: '2.25rem 2rem', border: '1.5px solid var(--borderLight)', position: 'relative' }}>
               <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#0B6B68', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1.2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-display)' }}>
                 1
               </div>
@@ -669,7 +672,7 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
             </div>
 
             {/* Step 2 */}
-            <div style={{ background: '#ffffff', borderRadius: '18px', padding: '2.25rem 2rem', border: '1.5px solid var(--borderLight)', position: 'relative' }}>
+            <div className="workflow-step-card" style={{ background: '#ffffff', borderRadius: '18px', padding: '2.25rem 2rem', border: '1.5px solid var(--borderLight)', position: 'relative' }}>
               <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#0B6B68', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1.2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-display)' }}>
                 2
               </div>
@@ -682,7 +685,7 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
             </div>
 
             {/* Step 3 */}
-            <div style={{ background: '#ffffff', borderRadius: '18px', padding: '2.25rem 2rem', border: '1.5px solid var(--borderLight)', position: 'relative' }}>
+            <div className="workflow-step-card" style={{ background: '#ffffff', borderRadius: '18px', padding: '2.25rem 2rem', border: '1.5px solid var(--borderLight)', position: 'relative' }}>
               <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#0B6B68', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1.2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-display)' }}>
                 3
               </div>
@@ -699,7 +702,7 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
       </section>
 
       {/* ---------------- NATIONAL HEALTH SCHEMES & PROGRAMS ---------------- */}
-      <section style={{ padding: '5rem 0', background: 'var(--background)' }}>
+      <section className="home-section" style={{ padding: '5rem 0', background: 'var(--background)' }}>
         <div className="np-container">
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '3rem' }}>
             <div>
@@ -723,10 +726,11 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
             </Link>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+          <div className="national-schemes-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '2rem' }}>
             {nationalPrograms.map((prog, idx) => (
               <div
                 key={idx}
+                className="national-scheme-card"
                 style={{
                   background: '#ffffff',
                   border: '1.5px solid var(--borderLight)',
@@ -792,12 +796,24 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
         </div>
       </section>
 
-
-
       <style>{`
+        /* Tablet & Intermediate Viewports */
+        @media (max-width: 1024px) {
+          .np-hero-grid {
+            gap: 2.5rem !important;
+          }
+          .sanjeevani-showcase-grid {
+            gap: 2.5rem !important;
+          }
+        }
+
+        /* Mobile & Small Tablets (<= 768px) */
         @media (max-width: 768px) {
           .np-hero {
-            padding: 2.5rem 0 3.5rem 0 !important;
+            padding: 2.25rem 0 3rem 0 !important;
+          }
+          .home-section {
+            padding: 2.75rem 0 !important;
           }
           .np-hero-headline-row {
             margin-bottom: 1.25rem !important;
@@ -834,6 +850,58 @@ export default function Home({ setIsNearbyOpen, setIsBloodOpen }) {
             max-width: 100% !important;
             margin-top: 1rem !important;
             box-sizing: border-box !important;
+          }
+          .sanjeevani-showcase-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+          .quick-actions-grid,
+          .ecosystem-pillars-grid,
+          .workflow-steps-grid,
+          .national-schemes-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.25rem !important;
+          }
+          .quick-action-card,
+          .ecosystem-pillar-card,
+          .workflow-step-card {
+            padding: 1.5rem 1.25rem !important;
+            border-radius: 14px !important;
+          }
+          .sanjeevani-prompt-card {
+            padding: 1.25rem 1rem !important;
+            border-radius: 16px !important;
+          }
+        }
+
+        /* Small Phones (<= 480px, e.g. 320px - 414px) */
+        @media (max-width: 480px) {
+          .home-section {
+            padding: 2rem 0 !important;
+          }
+          .emergency-grid {
+            grid-template-columns: 1fr !important;
+            gap: 0.85rem !important;
+          }
+          .emergency-lifeline-card {
+            padding: 1rem !important;
+            border-radius: 12px !important;
+          }
+          .quick-action-card,
+          .ecosystem-pillar-card,
+          .workflow-step-card {
+            padding: 1.25rem 1rem !important;
+          }
+          .np-h1 {
+            font-size: 1.85rem !important;
+            line-height: 1.2 !important;
+          }
+          .np-h2 {
+            font-size: 1.35rem !important;
+            line-height: 1.25 !important;
+          }
+          .np-lede {
+            font-size: 0.95rem !important;
           }
         }
       `}</style>

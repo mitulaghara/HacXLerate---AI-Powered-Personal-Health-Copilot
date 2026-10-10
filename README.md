@@ -750,7 +750,7 @@ HacXLerate-Health-Copilot/
 │   ├── public/                         # Static clinical imagery, badges & favicons
 │   ├── src/
 │   │   ├── components/                 # Reusable UI Components
-│   │   │   ├── SwasthyaSethuAIAssistant.jsx # Floating AI Copilot with audio mic & GPS triggers
+│   │   │   ├── AIAssistant.jsx                 # Floating AI Copilot with audio mic & GPS triggers
 │   │   │   ├── StructuredHealthMessage.jsx  # Unclipped cards, dialers, 108 shortcut, triage steps
 │   │   │   ├── UnifiedHealthTimeline.jsx    # Chronological patient health stream (Step 4)
 │   │   │   ├── MedicalDocumentIntelligence.jsx # OCR document intelligence & abnormal explanations

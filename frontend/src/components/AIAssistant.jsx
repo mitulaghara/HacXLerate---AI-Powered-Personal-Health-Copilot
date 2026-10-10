@@ -258,7 +258,7 @@ const Chip = styled.button`
   }
 `;
 
-const SwasthyaSethuAIAssistant = () => {
+const AIAssistant = () => {
   const { t, i18n } = useTranslation();
   const languageMap = {
     'en': 'English',
@@ -763,4 +763,4 @@ const SwasthyaSethuAIAssistant = () => {
   );
 };
 
-export default SwasthyaSethuAIAssistant;
+export default AIAssistant;
